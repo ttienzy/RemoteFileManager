@@ -1,0 +1,613 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\personal\\N3-K1\\NetworkProgramming (8)\\final\\RemoteFileManager\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{9F84AA17-7375-FF6C-60D6-61F26135EFC2}|RemoteFileManager.Application\\RemoteFileManager.Application.csproj|d:\\personal\\n3-k1\\networkprogramming (8)\\final\\remotefilemanager\\remotefilemanager.application\\services\\authenticationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9F84AA17-7375-FF6C-60D6-61F26135EFC2}|RemoteFileManager.Application\\RemoteFileManager.Application.csproj|solutionrelative:remotefilemanager.application\\services\\authenticationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5DA0F8BE-4131-913A-8DE9-FD610EAC3A73}|RemoteFileManager.Core\\RemoteFileManager.Core.csproj|d:\\personal\\n3-k1\\networkprogramming (8)\\final\\remotefilemanager\\remotefilemanager.core\\interfaces\\services\\iauthenticationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5DA0F8BE-4131-913A-8DE9-FD610EAC3A73}|RemoteFileManager.Core\\RemoteFileManager.Core.csproj|solutionrelative:remotefilemanager.core\\interfaces\\services\\iauthenticationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C27ED756-5DD5-4673-35A8-5A959FB9EFB0}|RemoteFileManager.Server\\RemoteFileManager.Server.csproj|d:\\personal\\n3-k1\\networkprogramming (8)\\final\\remotefilemanager\\remotefilemanager.server\\services\\grpcfilemanagerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C27ED756-5DD5-4673-35A8-5A959FB9EFB0}|RemoteFileManager.Server\\RemoteFileManager.Server.csproj|solutionrelative:remotefilemanager.server\\services\\grpcfilemanagerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C27ED756-5DD5-4673-35A8-5A959FB9EFB0}|RemoteFileManager.Server\\RemoteFileManager.Server.csproj|d:\\personal\\n3-k1\\networkprogramming (8)\\final\\remotefilemanager\\remotefilemanager.server\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{C27ED756-5DD5-4673-35A8-5A959FB9EFB0}|RemoteFileManager.Server\\RemoteFileManager.Server.csproj|solutionrelative:remotefilemanager.server\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C27ED756-5DD5-4673-35A8-5A959FB9EFB0}|RemoteFileManager.Server\\RemoteFileManager.Server.csproj|d:\\personal\\n3-k1\\networkprogramming (8)\\final\\remotefilemanager\\remotefilemanager.server\\interceptors\\authenticationinterceptor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C27ED756-5DD5-4673-35A8-5A959FB9EFB0}|RemoteFileManager.Server\\RemoteFileManager.Server.csproj|solutionrelative:remotefilemanager.server\\interceptors\\authenticationinterceptor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{81314D3A-DC78-8EF4-A7E1-456D6DFF4B39}|RemoteFileManager.Infrastructure\\RemoteFileManager.Infrastructure.csproj|d:\\personal\\n3-k1\\networkprogramming (8)\\final\\remotefilemanager\\remotefilemanager.infrastructure\\services\\filesystemservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{81314D3A-DC78-8EF4-A7E1-456D6DFF4B39}|RemoteFileManager.Infrastructure\\RemoteFileManager.Infrastructure.csproj|solutionrelative:remotefilemanager.infrastructure\\services\\filesystemservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C27ED756-5DD5-4673-35A8-5A959FB9EFB0}|RemoteFileManager.Server\\RemoteFileManager.Server.csproj|d:\\personal\\n3-k1\\networkprogramming (8)\\final\\remotefilemanager\\remotefilemanager.server\\interceptors\\exceptioninterceptor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C27ED756-5DD5-4673-35A8-5A959FB9EFB0}|RemoteFileManager.Server\\RemoteFileManager.Server.csproj|solutionrelative:remotefilemanager.server\\interceptors\\exceptioninterceptor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C27ED756-5DD5-4673-35A8-5A959FB9EFB0}|RemoteFileManager.Server\\RemoteFileManager.Server.csproj|d:\\personal\\n3-k1\\networkprogramming (8)\\final\\remotefilemanager\\remotefilemanager.server\\services\\grpcauthservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C27ED756-5DD5-4673-35A8-5A959FB9EFB0}|RemoteFileManager.Server\\RemoteFileManager.Server.csproj|solutionrelative:remotefilemanager.server\\services\\grpcauthservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{702D51F5-0E8B-32AE-FE00-DB7B554C6ED6}|RemoteFileManager.Client\\RemoteFileManager.Client.csproj|d:\\personal\\n3-k1\\networkprogramming (8)\\final\\remotefilemanager\\remotefilemanager.client\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{702D51F5-0E8B-32AE-FE00-DB7B554C6ED6}|RemoteFileManager.Client\\RemoteFileManager.Client.csproj|solutionrelative:remotefilemanager.client\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{702D51F5-0E8B-32AE-FE00-DB7B554C6ED6}|RemoteFileManager.Client\\RemoteFileManager.Client.csproj|d:\\personal\\n3-k1\\networkprogramming (8)\\final\\remotefilemanager\\remotefilemanager.client\\views\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{702D51F5-0E8B-32AE-FE00-DB7B554C6ED6}|RemoteFileManager.Client\\RemoteFileManager.Client.csproj|solutionrelative:remotefilemanager.client\\views\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{702D51F5-0E8B-32AE-FE00-DB7B554C6ED6}|RemoteFileManager.Client\\RemoteFileManager.Client.csproj|d:\\personal\\n3-k1\\networkprogramming (8)\\final\\remotefilemanager\\remotefilemanager.client\\viewmodels\\mainviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{702D51F5-0E8B-32AE-FE00-DB7B554C6ED6}|RemoteFileManager.Client\\RemoteFileManager.Client.csproj|solutionrelative:remotefilemanager.client\\viewmodels\\mainviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{702D51F5-0E8B-32AE-FE00-DB7B554C6ED6}|RemoteFileManager.Client\\RemoteFileManager.Client.csproj|d:\\personal\\n3-k1\\networkprogramming (8)\\final\\remotefilemanager\\remotefilemanager.client\\views\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{702D51F5-0E8B-32AE-FE00-DB7B554C6ED6}|RemoteFileManager.Client\\RemoteFileManager.Client.csproj|solutionrelative:remotefilemanager.client\\views\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{702D51F5-0E8B-32AE-FE00-DB7B554C6ED6}|RemoteFileManager.Client\\RemoteFileManager.Client.csproj|d:\\personal\\n3-k1\\networkprogramming (8)\\final\\remotefilemanager\\remotefilemanager.client\\views\\loginwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{702D51F5-0E8B-32AE-FE00-DB7B554C6ED6}|RemoteFileManager.Client\\RemoteFileManager.Client.csproj|solutionrelative:remotefilemanager.client\\views\\loginwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{702D51F5-0E8B-32AE-FE00-DB7B554C6ED6}|RemoteFileManager.Client\\RemoteFileManager.Client.csproj|d:\\personal\\n3-k1\\networkprogramming (8)\\final\\remotefilemanager\\remotefilemanager.client\\views\\loginwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{702D51F5-0E8B-32AE-FE00-DB7B554C6ED6}|RemoteFileManager.Client\\RemoteFileManager.Client.csproj|solutionrelative:remotefilemanager.client\\views\\loginwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{81314D3A-DC78-8EF4-A7E1-456D6DFF4B39}|RemoteFileManager.Infrastructure\\RemoteFileManager.Infrastructure.csproj|d:\\personal\\n3-k1\\networkprogramming (8)\\final\\remotefilemanager\\remotefilemanager.infrastructure\\repositories\\filemetadatarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{81314D3A-DC78-8EF4-A7E1-456D6DFF4B39}|RemoteFileManager.Infrastructure\\RemoteFileManager.Infrastructure.csproj|solutionrelative:remotefilemanager.infrastructure\\repositories\\filemetadatarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{81314D3A-DC78-8EF4-A7E1-456D6DFF4B39}|RemoteFileManager.Infrastructure\\RemoteFileManager.Infrastructure.csproj|d:\\personal\\n3-k1\\networkprogramming (8)\\final\\remotefilemanager\\remotefilemanager.infrastructure\\repositories\\filesharerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{81314D3A-DC78-8EF4-A7E1-456D6DFF4B39}|RemoteFileManager.Infrastructure\\RemoteFileManager.Infrastructure.csproj|solutionrelative:remotefilemanager.infrastructure\\repositories\\filesharerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{81314D3A-DC78-8EF4-A7E1-456D6DFF4B39}|RemoteFileManager.Infrastructure\\RemoteFileManager.Infrastructure.csproj|d:\\personal\\n3-k1\\networkprogramming (8)\\final\\remotefilemanager\\remotefilemanager.infrastructure\\repositories\\unitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{81314D3A-DC78-8EF4-A7E1-456D6DFF4B39}|RemoteFileManager.Infrastructure\\RemoteFileManager.Infrastructure.csproj|solutionrelative:remotefilemanager.infrastructure\\repositories\\unitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{81314D3A-DC78-8EF4-A7E1-456D6DFF4B39}|RemoteFileManager.Infrastructure\\RemoteFileManager.Infrastructure.csproj|d:\\personal\\n3-k1\\networkprogramming (8)\\final\\remotefilemanager\\remotefilemanager.infrastructure\\repositories\\repository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{81314D3A-DC78-8EF4-A7E1-456D6DFF4B39}|RemoteFileManager.Infrastructure\\RemoteFileManager.Infrastructure.csproj|solutionrelative:remotefilemanager.infrastructure\\repositories\\repository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{81314D3A-DC78-8EF4-A7E1-456D6DFF4B39}|RemoteFileManager.Infrastructure\\RemoteFileManager.Infrastructure.csproj|d:\\personal\\n3-k1\\networkprogramming (8)\\final\\remotefilemanager\\remotefilemanager.infrastructure\\repositories\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{81314D3A-DC78-8EF4-A7E1-456D6DFF4B39}|RemoteFileManager.Infrastructure\\RemoteFileManager.Infrastructure.csproj|solutionrelative:remotefilemanager.infrastructure\\repositories\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5DA0F8BE-4131-913A-8DE9-FD610EAC3A73}|RemoteFileManager.Core\\RemoteFileManager.Core.csproj|d:\\personal\\n3-k1\\networkprogramming (8)\\final\\remotefilemanager\\remotefilemanager.core\\exceptions\\insufficientstorageexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5DA0F8BE-4131-913A-8DE9-FD610EAC3A73}|RemoteFileManager.Core\\RemoteFileManager.Core.csproj|solutionrelative:remotefilemanager.core\\exceptions\\insufficientstorageexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5DA0F8BE-4131-913A-8DE9-FD610EAC3A73}|RemoteFileManager.Core\\RemoteFileManager.Core.csproj|d:\\personal\\n3-k1\\networkprogramming (8)\\final\\remotefilemanager\\remotefilemanager.core\\exceptions\\validationexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5DA0F8BE-4131-913A-8DE9-FD610EAC3A73}|RemoteFileManager.Core\\RemoteFileManager.Core.csproj|solutionrelative:remotefilemanager.core\\exceptions\\validationexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5DA0F8BE-4131-913A-8DE9-FD610EAC3A73}|RemoteFileManager.Core\\RemoteFileManager.Core.csproj|d:\\personal\\n3-k1\\networkprogramming (8)\\final\\remotefilemanager\\remotefilemanager.core\\exceptions\\unauthorizedexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5DA0F8BE-4131-913A-8DE9-FD610EAC3A73}|RemoteFileManager.Core\\RemoteFileManager.Core.csproj|solutionrelative:remotefilemanager.core\\exceptions\\unauthorizedexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{702D51F5-0E8B-32AE-FE00-DB7B554C6ED6}|RemoteFileManager.Client\\RemoteFileManager.Client.csproj|d:\\personal\\n3-k1\\networkprogramming (8)\\final\\remotefilemanager\\remotefilemanager.client\\viewmodels\\loginviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{702D51F5-0E8B-32AE-FE00-DB7B554C6ED6}|RemoteFileManager.Client\\RemoteFileManager.Client.csproj|solutionrelative:remotefilemanager.client\\viewmodels\\loginviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A5974E19-AD6D-A982-DDD3-C43DB12C8355}|RemoteFileManager.Contracts\\RemoteFileManager.Contracts.csproj|d:\\personal\\n3-k1\\networkprogramming (8)\\final\\remotefilemanager\\remotefilemanager.contracts\\protos\\auth.proto||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{A5974E19-AD6D-A982-DDD3-C43DB12C8355}|RemoteFileManager.Contracts\\RemoteFileManager.Contracts.csproj|solutionrelative:remotefilemanager.contracts\\protos\\auth.proto||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C27ED756-5DD5-4673-35A8-5A959FB9EFB0}|RemoteFileManager.Server\\RemoteFileManager.Server.csproj|d:\\personal\\n3-k1\\networkprogramming (8)\\final\\remotefilemanager\\remotefilemanager.server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C27ED756-5DD5-4673-35A8-5A959FB9EFB0}|RemoteFileManager.Server\\RemoteFileManager.Server.csproj|solutionrelative:remotefilemanager.server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C27ED756-5DD5-4673-35A8-5A959FB9EFB0}|RemoteFileManager.Server\\RemoteFileManager.Server.csproj|d:\\personal\\n3-k1\\networkprogramming (8)\\final\\remotefilemanager\\remotefilemanager.server\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{C27ED756-5DD5-4673-35A8-5A959FB9EFB0}|RemoteFileManager.Server\\RemoteFileManager.Server.csproj|solutionrelative:remotefilemanager.server\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{702D51F5-0E8B-32AE-FE00-DB7B554C6ED6}|RemoteFileManager.Client\\RemoteFileManager.Client.csproj|d:\\personal\\n3-k1\\networkprogramming (8)\\final\\remotefilemanager\\remotefilemanager.client\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{702D51F5-0E8B-32AE-FE00-DB7B554C6ED6}|RemoteFileManager.Client\\RemoteFileManager.Client.csproj|solutionrelative:remotefilemanager.client\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{702D51F5-0E8B-32AE-FE00-DB7B554C6ED6}|RemoteFileManager.Client\\RemoteFileManager.Client.csproj|d:\\personal\\n3-k1\\networkprogramming (8)\\final\\remotefilemanager\\remotefilemanager.client\\services\\grpcservices\\streaminggrpcclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{702D51F5-0E8B-32AE-FE00-DB7B554C6ED6}|RemoteFileManager.Client\\RemoteFileManager.Client.csproj|solutionrelative:remotefilemanager.client\\services\\grpcservices\\streaminggrpcclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{702D51F5-0E8B-32AE-FE00-DB7B554C6ED6}|RemoteFileManager.Client\\RemoteFileManager.Client.csproj|d:\\personal\\n3-k1\\networkprogramming (8)\\final\\remotefilemanager\\remotefilemanager.client\\services\\grpcservices\\filemanagergrpcclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{702D51F5-0E8B-32AE-FE00-DB7B554C6ED6}|RemoteFileManager.Client\\RemoteFileManager.Client.csproj|solutionrelative:remotefilemanager.client\\services\\grpcservices\\filemanagergrpcclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{702D51F5-0E8B-32AE-FE00-DB7B554C6ED6}|RemoteFileManager.Client\\RemoteFileManager.Client.csproj|d:\\personal\\n3-k1\\networkprogramming (8)\\final\\remotefilemanager\\remotefilemanager.client\\services\\extensions\\servicecollectionextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{702D51F5-0E8B-32AE-FE00-DB7B554C6ED6}|RemoteFileManager.Client\\RemoteFileManager.Client.csproj|solutionrelative:remotefilemanager.client\\services\\extensions\\servicecollectionextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{702D51F5-0E8B-32AE-FE00-DB7B554C6ED6}|RemoteFileManager.Client\\RemoteFileManager.Client.csproj|d:\\personal\\n3-k1\\networkprogramming (8)\\final\\remotefilemanager\\remotefilemanager.client\\services\\dialogservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{702D51F5-0E8B-32AE-FE00-DB7B554C6ED6}|RemoteFileManager.Client\\RemoteFileManager.Client.csproj|solutionrelative:remotefilemanager.client\\services\\dialogservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{702D51F5-0E8B-32AE-FE00-DB7B554C6ED6}|RemoteFileManager.Client\\RemoteFileManager.Client.csproj|d:\\personal\\n3-k1\\networkprogramming (8)\\final\\remotefilemanager\\remotefilemanager.client\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{702D51F5-0E8B-32AE-FE00-DB7B554C6ED6}|RemoteFileManager.Client\\RemoteFileManager.Client.csproj|solutionrelative:remotefilemanager.client\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 382,
+          "SelectedChildIndex": 10,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:130:0:{13b12e3e-c1b4-4539-9371-4fe9a0d523fc}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:2:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "AuthenticationInterceptor.cs",
+              "DocumentMoniker": "D:\\personal\\N3-K1\\NetworkProgramming (8)\\final\\RemoteFileManager\\RemoteFileManager.Server\\Interceptors\\AuthenticationInterceptor.cs",
+              "RelativeDocumentMoniker": "RemoteFileManager.Server\\Interceptors\\AuthenticationInterceptor.cs",
+              "ToolTip": "D:\\personal\\N3-K1\\NetworkProgramming (8)\\final\\RemoteFileManager\\RemoteFileManager.Server\\Interceptors\\AuthenticationInterceptor.cs",
+              "RelativeToolTip": "RemoteFileManager.Server\\Interceptors\\AuthenticationInterceptor.cs",
+              "ViewState": "AgIAAD4AAAAAAAAAAAAiwE0AAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-19T14:24:57.586Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "GrpcFileManagerService.cs",
+              "DocumentMoniker": "D:\\personal\\N3-K1\\NetworkProgramming (8)\\final\\RemoteFileManager\\RemoteFileManager.Server\\Services\\GrpcFileManagerService.cs",
+              "RelativeDocumentMoniker": "RemoteFileManager.Server\\Services\\GrpcFileManagerService.cs",
+              "ToolTip": "D:\\personal\\N3-K1\\NetworkProgramming (8)\\final\\RemoteFileManager\\RemoteFileManager.Server\\Services\\GrpcFileManagerService.cs",
+              "RelativeToolTip": "RemoteFileManager.Server\\Services\\GrpcFileManagerService.cs",
+              "ViewState": "AgIAAPEAAAAAAAAAAAAewPoAAAA7AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-19T14:45:33.267Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "IAuthenticationService.cs",
+              "DocumentMoniker": "D:\\personal\\N3-K1\\NetworkProgramming (8)\\final\\RemoteFileManager\\RemoteFileManager.Core\\Interfaces\\Services\\IAuthenticationService.cs",
+              "RelativeDocumentMoniker": "RemoteFileManager.Core\\Interfaces\\Services\\IAuthenticationService.cs",
+              "ToolTip": "D:\\personal\\N3-K1\\NetworkProgramming (8)\\final\\RemoteFileManager\\RemoteFileManager.Core\\Interfaces\\Services\\IAuthenticationService.cs",
+              "RelativeToolTip": "RemoteFileManager.Core\\Interfaces\\Services\\IAuthenticationService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAgAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-19T14:46:38.44Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AuthenticationService.cs",
+              "DocumentMoniker": "D:\\personal\\N3-K1\\NetworkProgramming (8)\\final\\RemoteFileManager\\RemoteFileManager.Application\\Services\\AuthenticationService.cs",
+              "RelativeDocumentMoniker": "RemoteFileManager.Application\\Services\\AuthenticationService.cs",
+              "ToolTip": "D:\\personal\\N3-K1\\NetworkProgramming (8)\\final\\RemoteFileManager\\RemoteFileManager.Application\\Services\\AuthenticationService.cs",
+              "RelativeToolTip": "RemoteFileManager.Application\\Services\\AuthenticationService.cs",
+              "ViewState": "AgIAAJYAAAAAAAAAAAAAwKQAAAA6AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-19T14:47:34.259Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "D:\\personal\\N3-K1\\NetworkProgramming (8)\\final\\RemoteFileManager\\RemoteFileManager.Server\\appsettings.json",
+              "RelativeDocumentMoniker": "RemoteFileManager.Server\\appsettings.json",
+              "ToolTip": "D:\\personal\\N3-K1\\NetworkProgramming (8)\\final\\RemoteFileManager\\RemoteFileManager.Server\\appsettings.json",
+              "RelativeToolTip": "RemoteFileManager.Server\\appsettings.json",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAqwBcAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-11-19T14:21:10.969Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "FileSystemService.cs",
+              "DocumentMoniker": "D:\\personal\\N3-K1\\NetworkProgramming (8)\\final\\RemoteFileManager\\RemoteFileManager.Infrastructure\\Services\\FileSystemService.cs",
+              "RelativeDocumentMoniker": "RemoteFileManager.Infrastructure\\Services\\FileSystemService.cs",
+              "ToolTip": "D:\\personal\\N3-K1\\NetworkProgramming (8)\\final\\RemoteFileManager\\RemoteFileManager.Infrastructure\\Services\\FileSystemService.cs",
+              "RelativeToolTip": "RemoteFileManager.Infrastructure\\Services\\FileSystemService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-19T15:04:24.21Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "GrpcAuthService.cs",
+              "DocumentMoniker": "D:\\personal\\N3-K1\\NetworkProgramming (8)\\final\\RemoteFileManager\\RemoteFileManager.Server\\Services\\GrpcAuthService.cs",
+              "RelativeDocumentMoniker": "RemoteFileManager.Server\\Services\\GrpcAuthService.cs",
+              "ToolTip": "D:\\personal\\N3-K1\\NetworkProgramming (8)\\final\\RemoteFileManager\\RemoteFileManager.Server\\Services\\GrpcAuthService.cs",
+              "RelativeToolTip": "RemoteFileManager.Server\\Services\\GrpcAuthService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACsAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-19T14:45:06.155Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "App.xaml",
+              "DocumentMoniker": "D:\\personal\\N3-K1\\NetworkProgramming (8)\\final\\RemoteFileManager\\RemoteFileManager.Client\\App.xaml",
+              "RelativeDocumentMoniker": "RemoteFileManager.Client\\App.xaml",
+              "ToolTip": "D:\\personal\\N3-K1\\NetworkProgramming (8)\\final\\RemoteFileManager\\RemoteFileManager.Client\\App.xaml",
+              "RelativeToolTip": "RemoteFileManager.Client\\App.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-11-19T13:52:04.605Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "MainViewModel.cs",
+              "DocumentMoniker": "D:\\personal\\N3-K1\\NetworkProgramming (8)\\final\\RemoteFileManager\\RemoteFileManager.Client\\ViewModels\\MainViewModel.cs",
+              "RelativeDocumentMoniker": "RemoteFileManager.Client\\ViewModels\\MainViewModel.cs",
+              "ToolTip": "D:\\personal\\N3-K1\\NetworkProgramming (8)\\final\\RemoteFileManager\\RemoteFileManager.Client\\ViewModels\\MainViewModel.cs",
+              "RelativeToolTip": "RemoteFileManager.Client\\ViewModels\\MainViewModel.cs",
+              "ViewState": "AgIAAKUAAAAAAAAAAAAgwLsAAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-19T13:46:34.182Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "ExceptionInterceptor.cs",
+              "DocumentMoniker": "D:\\personal\\N3-K1\\NetworkProgramming (8)\\final\\RemoteFileManager\\RemoteFileManager.Server\\Interceptors\\ExceptionInterceptor.cs",
+              "RelativeDocumentMoniker": "RemoteFileManager.Server\\Interceptors\\ExceptionInterceptor.cs",
+              "ToolTip": "D:\\personal\\N3-K1\\NetworkProgramming (8)\\final\\RemoteFileManager\\RemoteFileManager.Server\\Interceptors\\ExceptionInterceptor.cs",
+              "RelativeToolTip": "RemoteFileManager.Server\\Interceptors\\ExceptionInterceptor.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-19T14:39:28.579Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "MainWindow.xaml.cs",
+              "DocumentMoniker": "D:\\personal\\N3-K1\\NetworkProgramming (8)\\final\\RemoteFileManager\\RemoteFileManager.Client\\Views\\MainWindow.xaml.cs",
+              "RelativeDocumentMoniker": "RemoteFileManager.Client\\Views\\MainWindow.xaml.cs",
+              "ToolTip": "D:\\personal\\N3-K1\\NetworkProgramming (8)\\final\\RemoteFileManager\\RemoteFileManager.Client\\Views\\MainWindow.xaml.cs",
+              "RelativeToolTip": "RemoteFileManager.Client\\Views\\MainWindow.xaml.cs",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAgwBEAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-19T13:54:40.327Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "LoginWindow.xaml.cs",
+              "DocumentMoniker": "D:\\personal\\N3-K1\\NetworkProgramming (8)\\final\\RemoteFileManager\\RemoteFileManager.Client\\Views\\LoginWindow.xaml.cs",
+              "RelativeDocumentMoniker": "RemoteFileManager.Client\\Views\\LoginWindow.xaml.cs",
+              "ToolTip": "D:\\personal\\N3-K1\\NetworkProgramming (8)\\final\\RemoteFileManager\\RemoteFileManager.Client\\Views\\LoginWindow.xaml.cs",
+              "RelativeToolTip": "RemoteFileManager.Client\\Views\\LoginWindow.xaml.cs",
+              "ViewState": "AgIAAAcAAAAAAAAAAIBJwCAAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-19T13:52:30.097Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "MainWindow.xaml",
+              "DocumentMoniker": "D:\\personal\\N3-K1\\NetworkProgramming (8)\\final\\RemoteFileManager\\RemoteFileManager.Client\\Views\\MainWindow.xaml",
+              "RelativeDocumentMoniker": "RemoteFileManager.Client\\Views\\MainWindow.xaml",
+              "ToolTip": "D:\\personal\\N3-K1\\NetworkProgramming (8)\\final\\RemoteFileManager\\RemoteFileManager.Client\\Views\\MainWindow.xaml",
+              "RelativeToolTip": "RemoteFileManager.Client\\Views\\MainWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-11-19T14:48:25.092Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "FileMetadataRepository.cs",
+              "DocumentMoniker": "D:\\personal\\N3-K1\\NetworkProgramming (8)\\final\\RemoteFileManager\\RemoteFileManager.Infrastructure\\Repositories\\FileMetadataRepository.cs",
+              "RelativeDocumentMoniker": "RemoteFileManager.Infrastructure\\Repositories\\FileMetadataRepository.cs",
+              "ToolTip": "D:\\personal\\N3-K1\\NetworkProgramming (8)\\final\\RemoteFileManager\\RemoteFileManager.Infrastructure\\Repositories\\FileMetadataRepository.cs",
+              "RelativeToolTip": "RemoteFileManager.Infrastructure\\Repositories\\FileMetadataRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-19T14:47:22.02Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "FileShareRepository.cs",
+              "DocumentMoniker": "D:\\personal\\N3-K1\\NetworkProgramming (8)\\final\\RemoteFileManager\\RemoteFileManager.Infrastructure\\Repositories\\FileShareRepository.cs",
+              "RelativeDocumentMoniker": "RemoteFileManager.Infrastructure\\Repositories\\FileShareRepository.cs",
+              "ToolTip": "D:\\personal\\N3-K1\\NetworkProgramming (8)\\final\\RemoteFileManager\\RemoteFileManager.Infrastructure\\Repositories\\FileShareRepository.cs",
+              "RelativeToolTip": "RemoteFileManager.Infrastructure\\Repositories\\FileShareRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-19T14:47:21.084Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "LoginWindow.xaml",
+              "DocumentMoniker": "D:\\personal\\N3-K1\\NetworkProgramming (8)\\final\\RemoteFileManager\\RemoteFileManager.Client\\Views\\LoginWindow.xaml",
+              "RelativeDocumentMoniker": "RemoteFileManager.Client\\Views\\LoginWindow.xaml",
+              "ToolTip": "D:\\personal\\N3-K1\\NetworkProgramming (8)\\final\\RemoteFileManager\\RemoteFileManager.Client\\Views\\LoginWindow.xaml",
+              "RelativeToolTip": "RemoteFileManager.Client\\Views\\LoginWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-11-19T14:14:42.025Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "UnitOfWork.cs",
+              "DocumentMoniker": "D:\\personal\\N3-K1\\NetworkProgramming (8)\\final\\RemoteFileManager\\RemoteFileManager.Infrastructure\\Repositories\\UnitOfWork.cs",
+              "RelativeDocumentMoniker": "RemoteFileManager.Infrastructure\\Repositories\\UnitOfWork.cs",
+              "ToolTip": "D:\\personal\\N3-K1\\NetworkProgramming (8)\\final\\RemoteFileManager\\RemoteFileManager.Infrastructure\\Repositories\\UnitOfWork.cs",
+              "RelativeToolTip": "RemoteFileManager.Infrastructure\\Repositories\\UnitOfWork.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-19T14:47:19.955Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "Repository.cs",
+              "DocumentMoniker": "D:\\personal\\N3-K1\\NetworkProgramming (8)\\final\\RemoteFileManager\\RemoteFileManager.Infrastructure\\Repositories\\Repository.cs",
+              "RelativeDocumentMoniker": "RemoteFileManager.Infrastructure\\Repositories\\Repository.cs",
+              "ToolTip": "D:\\personal\\N3-K1\\NetworkProgramming (8)\\final\\RemoteFileManager\\RemoteFileManager.Infrastructure\\Repositories\\Repository.cs",
+              "RelativeToolTip": "RemoteFileManager.Infrastructure\\Repositories\\Repository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-19T14:47:19.075Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "UserRepository.cs",
+              "DocumentMoniker": "D:\\personal\\N3-K1\\NetworkProgramming (8)\\final\\RemoteFileManager\\RemoteFileManager.Infrastructure\\Repositories\\UserRepository.cs",
+              "RelativeDocumentMoniker": "RemoteFileManager.Infrastructure\\Repositories\\UserRepository.cs",
+              "ToolTip": "D:\\personal\\N3-K1\\NetworkProgramming (8)\\final\\RemoteFileManager\\RemoteFileManager.Infrastructure\\Repositories\\UserRepository.cs",
+              "RelativeToolTip": "RemoteFileManager.Infrastructure\\Repositories\\UserRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-19T14:47:15.211Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "InsufficientStorageException.cs",
+              "DocumentMoniker": "D:\\personal\\N3-K1\\NetworkProgramming (8)\\final\\RemoteFileManager\\RemoteFileManager.Core\\Exceptions\\InsufficientStorageException.cs",
+              "RelativeDocumentMoniker": "RemoteFileManager.Core\\Exceptions\\InsufficientStorageException.cs",
+              "ToolTip": "D:\\personal\\N3-K1\\NetworkProgramming (8)\\final\\RemoteFileManager\\RemoteFileManager.Core\\Exceptions\\InsufficientStorageException.cs",
+              "RelativeToolTip": "RemoteFileManager.Core\\Exceptions\\InsufficientStorageException.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-19T14:46:59.58Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "ValidationException.cs",
+              "DocumentMoniker": "D:\\personal\\N3-K1\\NetworkProgramming (8)\\final\\RemoteFileManager\\RemoteFileManager.Core\\Exceptions\\ValidationException.cs",
+              "RelativeDocumentMoniker": "RemoteFileManager.Core\\Exceptions\\ValidationException.cs",
+              "ToolTip": "D:\\personal\\N3-K1\\NetworkProgramming (8)\\final\\RemoteFileManager\\RemoteFileManager.Core\\Exceptions\\ValidationException.cs",
+              "RelativeToolTip": "RemoteFileManager.Core\\Exceptions\\ValidationException.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-19T14:46:58.132Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "UnauthorizedException.cs",
+              "DocumentMoniker": "D:\\personal\\N3-K1\\NetworkProgramming (8)\\final\\RemoteFileManager\\RemoteFileManager.Core\\Exceptions\\UnauthorizedException.cs",
+              "RelativeDocumentMoniker": "RemoteFileManager.Core\\Exceptions\\UnauthorizedException.cs",
+              "ToolTip": "D:\\personal\\N3-K1\\NetworkProgramming (8)\\final\\RemoteFileManager\\RemoteFileManager.Core\\Exceptions\\UnauthorizedException.cs",
+              "RelativeToolTip": "RemoteFileManager.Core\\Exceptions\\UnauthorizedException.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-19T14:46:56.563Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "LoginViewModel.cs",
+              "DocumentMoniker": "D:\\personal\\N3-K1\\NetworkProgramming (8)\\final\\RemoteFileManager\\RemoteFileManager.Client\\ViewModels\\LoginViewModel.cs",
+              "RelativeDocumentMoniker": "RemoteFileManager.Client\\ViewModels\\LoginViewModel.cs",
+              "ToolTip": "D:\\personal\\N3-K1\\NetworkProgramming (8)\\final\\RemoteFileManager\\RemoteFileManager.Client\\ViewModels\\LoginViewModel.cs",
+              "RelativeToolTip": "RemoteFileManager.Client\\ViewModels\\LoginViewModel.cs",
+              "ViewState": "AgIAADkAAAAAAAAAAAAgwCUAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-19T13:40:32.759Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "auth.proto",
+              "DocumentMoniker": "D:\\personal\\N3-K1\\NetworkProgramming (8)\\final\\RemoteFileManager\\RemoteFileManager.Contracts\\Protos\\auth.proto",
+              "RelativeDocumentMoniker": "RemoteFileManager.Contracts\\Protos\\auth.proto",
+              "ToolTip": "D:\\personal\\N3-K1\\NetworkProgramming (8)\\final\\RemoteFileManager\\RemoteFileManager.Contracts\\Protos\\auth.proto",
+              "RelativeToolTip": "RemoteFileManager.Contracts\\Protos\\auth.proto",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003853|",
+              "WhenOpened": "2025-11-19T14:37:49.27Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\personal\\N3-K1\\NetworkProgramming (8)\\final\\RemoteFileManager\\RemoteFileManager.Server\\Program.cs",
+              "RelativeDocumentMoniker": "RemoteFileManager.Server\\Program.cs",
+              "ToolTip": "D:\\personal\\N3-K1\\NetworkProgramming (8)\\final\\RemoteFileManager\\RemoteFileManager.Server\\Program.cs",
+              "RelativeToolTip": "RemoteFileManager.Server\\Program.cs",
+              "ViewState": "AgIAACAAAAAAAAAAAABRwC0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-19T14:21:09.176Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "appsettings.Development.json",
+              "DocumentMoniker": "D:\\personal\\N3-K1\\NetworkProgramming (8)\\final\\RemoteFileManager\\RemoteFileManager.Server\\appsettings.Development.json",
+              "RelativeDocumentMoniker": "RemoteFileManager.Server\\appsettings.Development.json",
+              "ToolTip": "D:\\personal\\N3-K1\\NetworkProgramming (8)\\final\\RemoteFileManager\\RemoteFileManager.Server\\appsettings.Development.json",
+              "RelativeToolTip": "RemoteFileManager.Server\\appsettings.Development.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-11-19T14:21:12.521Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "StreamingGrpcClient.cs",
+              "DocumentMoniker": "D:\\personal\\N3-K1\\NetworkProgramming (8)\\final\\RemoteFileManager\\RemoteFileManager.Client\\Services\\GrpcServices\\StreamingGrpcClient.cs",
+              "RelativeDocumentMoniker": "RemoteFileManager.Client\\Services\\GrpcServices\\StreamingGrpcClient.cs",
+              "ToolTip": "D:\\personal\\N3-K1\\NetworkProgramming (8)\\final\\RemoteFileManager\\RemoteFileManager.Client\\Services\\GrpcServices\\StreamingGrpcClient.cs",
+              "RelativeToolTip": "RemoteFileManager.Client\\Services\\GrpcServices\\StreamingGrpcClient.cs",
+              "ViewState": "AgIAAGIAAAAAAAAAAAAowG4AAABZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-19T13:55:24.823Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "App.xaml.cs",
+              "DocumentMoniker": "D:\\personal\\N3-K1\\NetworkProgramming (8)\\final\\RemoteFileManager\\RemoteFileManager.Client\\App.xaml.cs",
+              "RelativeDocumentMoniker": "RemoteFileManager.Client\\App.xaml.cs",
+              "ToolTip": "D:\\personal\\N3-K1\\NetworkProgramming (8)\\final\\RemoteFileManager\\RemoteFileManager.Client\\App.xaml.cs",
+              "RelativeToolTip": "RemoteFileManager.Client\\App.xaml.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAlwA4AAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-19T13:45:27.407Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "FileManagerGrpcClient.cs",
+              "DocumentMoniker": "D:\\personal\\N3-K1\\NetworkProgramming (8)\\final\\RemoteFileManager\\RemoteFileManager.Client\\Services\\GrpcServices\\FileManagerGrpcClient.cs",
+              "RelativeDocumentMoniker": "RemoteFileManager.Client\\Services\\GrpcServices\\FileManagerGrpcClient.cs",
+              "ToolTip": "D:\\personal\\N3-K1\\NetworkProgramming (8)\\final\\RemoteFileManager\\RemoteFileManager.Client\\Services\\GrpcServices\\FileManagerGrpcClient.cs",
+              "RelativeToolTip": "RemoteFileManager.Client\\Services\\GrpcServices\\FileManagerGrpcClient.cs",
+              "ViewState": "AgIAAEUAAAAAAAAAAAAgwF0AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-19T13:55:16.767Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "DialogService.cs",
+              "DocumentMoniker": "D:\\personal\\N3-K1\\NetworkProgramming (8)\\final\\RemoteFileManager\\RemoteFileManager.Client\\Services\\DialogService.cs",
+              "RelativeDocumentMoniker": "RemoteFileManager.Client\\Services\\DialogService.cs",
+              "ToolTip": "D:\\personal\\N3-K1\\NetworkProgramming (8)\\final\\RemoteFileManager\\RemoteFileManager.Client\\Services\\DialogService.cs",
+              "RelativeToolTip": "RemoteFileManager.Client\\Services\\DialogService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-19T13:45:58.639Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "ServiceCollectionExtensions.cs",
+              "DocumentMoniker": "D:\\personal\\N3-K1\\NetworkProgramming (8)\\final\\RemoteFileManager\\RemoteFileManager.Client\\Services\\Extensions\\ServiceCollectionExtensions.cs",
+              "RelativeDocumentMoniker": "RemoteFileManager.Client\\Services\\Extensions\\ServiceCollectionExtensions.cs",
+              "ToolTip": "D:\\personal\\N3-K1\\NetworkProgramming (8)\\final\\RemoteFileManager\\RemoteFileManager.Client\\Services\\Extensions\\ServiceCollectionExtensions.cs",
+              "RelativeToolTip": "RemoteFileManager.Client\\Services\\Extensions\\ServiceCollectionExtensions.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAuwBUAAAA5AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-19T13:45:13.686Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "D:\\personal\\N3-K1\\NetworkProgramming (8)\\final\\RemoteFileManager\\RemoteFileManager.Client\\appsettings.json",
+              "RelativeDocumentMoniker": "RemoteFileManager.Client\\appsettings.json",
+              "ToolTip": "D:\\personal\\N3-K1\\NetworkProgramming (8)\\final\\RemoteFileManager\\RemoteFileManager.Client\\appsettings.json",
+              "RelativeToolTip": "RemoteFileManager.Client\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-11-19T13:36:57.926Z",
+              "EditorCaption": ""
+            }
+          ]
+        },
+        {
+          "DockedWidth": 178,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            }
+          ]
+        },
+        {
+          "DockedWidth": 178,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

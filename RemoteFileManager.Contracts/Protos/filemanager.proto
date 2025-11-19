@@ -1,0 +1,103 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "RemoteFileManager.Contracts.FileManager";
+
+import "Protos/common.proto";
+
+service FileManagerService {
+  // Browse & List
+  rpc ListFiles(ListFilesRequest) returns (ListFilesResponse);
+  rpc GetFileInfo(GetFileInfoRequest) returns (FileInfo);
+  
+  // CRUD Operations
+  rpc CreateFolder(CreateFolderRequest) returns (OperationResult);
+  rpc DeleteFile(DeleteFileRequest) returns (OperationResult);
+  rpc RenameFile(RenameFileRequest) returns (OperationResult);
+  rpc MoveFile(MoveFileRequest) returns (OperationResult);
+  
+  // Streaming Operations
+  rpc UploadFile(stream FileChunk) returns (UploadFileResponse);
+  rpc DownloadFile(DownloadFileRequest) returns (stream FileChunk);
+  
+  // Search
+  rpc SearchFiles(SearchFilesRequest) returns (SearchFilesResponse);
+}
+
+message ListFilesRequest {
+  string path = 1;
+  string token = 2;
+}
+
+message ListFilesResponse {
+  repeated FileInfo files = 1;
+  string current_path = 2;
+}
+
+message FileInfo {
+  string name = 1;
+  string full_path = 2;
+  int64 size = 3;
+  string created_date = 4;
+  string modified_date = 5;
+  bool is_directory = 6;
+  string extension = 7;
+}
+
+message CreateFolderRequest {
+  string path = 1;
+  string folder_name = 2;
+  string token = 3;
+}
+
+message DeleteFileRequest {
+  string file_path = 1;
+  string token = 2;
+}
+
+message RenameFileRequest {
+  string old_path = 1;
+  string new_name = 2;
+  string token = 3;
+}
+
+message MoveFileRequest {
+  string source_path = 1;
+  string destination_path = 2;
+  string token = 3;
+}
+
+message FileChunk {
+  string file_name = 1;
+  string destination_path = 2;
+  bytes data = 3;
+  int32 chunk_index = 4;
+  int32 total_chunks = 5;
+  string token = 6;
+}
+
+message UploadFileResponse {
+  bool success = 1;
+  string message = 2;
+  string saved_path = 3;
+  int64 file_size = 4;
+}
+
+message DownloadFileRequest {
+  string file_path = 1;
+  string token = 2;
+}
+
+message SearchFilesRequest {
+  string search_term = 1;
+  string root_path = 2;
+  string token = 3;
+}
+
+message SearchFilesResponse {
+  repeated FileInfo results = 1;
+}
+
+message GetFileInfoRequest {
+  string file_path = 1;
+  string token = 2;
+}

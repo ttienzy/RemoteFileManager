@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "7QFeYvNVXA0=",
+  "success": true,
+  "projectFilePath": "D:\\personal\\N3-K1\\NetworkProgramming (8)\\final\\RemoteFileManager\\RemoteFileManager.Contracts\\RemoteFileManager.Contracts.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\ASUS\\.nuget\\packages\\google.protobuf\\3.33.1\\google.protobuf.3.33.1.nupkg.sha512",
+    "C:\\Users\\ASUS\\.nuget\\packages\\grpc.core.api\\2.71.0\\grpc.core.api.2.71.0.nupkg.sha512",
+    "C:\\Users\\ASUS\\.nuget\\packages\\grpc.tools\\2.76.0\\grpc.tools.2.76.0.nupkg.sha512"
+  ],
+  "logs": []
+}

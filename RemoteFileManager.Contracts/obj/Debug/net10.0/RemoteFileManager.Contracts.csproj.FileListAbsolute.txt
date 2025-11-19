@@ -1,0 +1,12 @@
+D:\personal\N3-K1\NetworkProgramming (8)\final\RemoteFileManager\RemoteFileManager.Contracts\bin\Debug\net10.0\RemoteFileManager.Contracts.deps.json
+D:\personal\N3-K1\NetworkProgramming (8)\final\RemoteFileManager\RemoteFileManager.Contracts\bin\Debug\net10.0\RemoteFileManager.Contracts.dll
+D:\personal\N3-K1\NetworkProgramming (8)\final\RemoteFileManager\RemoteFileManager.Contracts\bin\Debug\net10.0\RemoteFileManager.Contracts.pdb
+D:\personal\N3-K1\NetworkProgramming (8)\final\RemoteFileManager\RemoteFileManager.Contracts\obj\Debug\net10.0\RemoteFileManager.Contracts.csproj.AssemblyReference.cache
+D:\personal\N3-K1\NetworkProgramming (8)\final\RemoteFileManager\RemoteFileManager.Contracts\obj\Debug\net10.0\RemoteFileManager.Contracts.GeneratedMSBuildEditorConfig.editorconfig
+D:\personal\N3-K1\NetworkProgramming (8)\final\RemoteFileManager\RemoteFileManager.Contracts\obj\Debug\net10.0\RemoteFileManager.Contracts.AssemblyInfoInputs.cache
+D:\personal\N3-K1\NetworkProgramming (8)\final\RemoteFileManager\RemoteFileManager.Contracts\obj\Debug\net10.0\RemoteFileManager.Contracts.AssemblyInfo.cs
+D:\personal\N3-K1\NetworkProgramming (8)\final\RemoteFileManager\RemoteFileManager.Contracts\obj\Debug\net10.0\RemoteFileManager.Contracts.csproj.CoreCompileInputs.cache
+D:\personal\N3-K1\NetworkProgramming (8)\final\RemoteFileManager\RemoteFileManager.Contracts\obj\Debug\net10.0\RemoteFileManager.Contracts.dll
+D:\personal\N3-K1\NetworkProgramming (8)\final\RemoteFileManager\RemoteFileManager.Contracts\obj\Debug\net10.0\refint\RemoteFileManager.Contracts.dll
+D:\personal\N3-K1\NetworkProgramming (8)\final\RemoteFileManager\RemoteFileManager.Contracts\obj\Debug\net10.0\RemoteFileManager.Contracts.pdb
+D:\personal\N3-K1\NetworkProgramming (8)\final\RemoteFileManager\RemoteFileManager.Contracts\obj\Debug\net10.0\ref\RemoteFileManager.Contracts.dll

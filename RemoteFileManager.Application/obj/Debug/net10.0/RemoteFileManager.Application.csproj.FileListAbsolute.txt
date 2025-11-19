@@ -1,0 +1,15 @@
+D:\personal\N3-K1\NetworkProgramming (8)\final\RemoteFileManager\RemoteFileManager.Application\obj\Debug\net10.0\RemoteFileManager.Application.csproj.AssemblyReference.cache
+D:\personal\N3-K1\NetworkProgramming (8)\final\RemoteFileManager\RemoteFileManager.Application\obj\Debug\net10.0\RemoteFileManager.Application.GeneratedMSBuildEditorConfig.editorconfig
+D:\personal\N3-K1\NetworkProgramming (8)\final\RemoteFileManager\RemoteFileManager.Application\obj\Debug\net10.0\RemoteFileManager.Application.AssemblyInfoInputs.cache
+D:\personal\N3-K1\NetworkProgramming (8)\final\RemoteFileManager\RemoteFileManager.Application\obj\Debug\net10.0\RemoteFileManager.Application.AssemblyInfo.cs
+D:\personal\N3-K1\NetworkProgramming (8)\final\RemoteFileManager\RemoteFileManager.Application\obj\Debug\net10.0\RemoteFileManager.Application.csproj.CoreCompileInputs.cache
+D:\personal\N3-K1\NetworkProgramming (8)\final\RemoteFileManager\RemoteFileManager.Application\bin\Debug\net10.0\RemoteFileManager.Application.deps.json
+D:\personal\N3-K1\NetworkProgramming (8)\final\RemoteFileManager\RemoteFileManager.Application\bin\Debug\net10.0\RemoteFileManager.Application.dll
+D:\personal\N3-K1\NetworkProgramming (8)\final\RemoteFileManager\RemoteFileManager.Application\bin\Debug\net10.0\RemoteFileManager.Application.pdb
+D:\personal\N3-K1\NetworkProgramming (8)\final\RemoteFileManager\RemoteFileManager.Application\bin\Debug\net10.0\RemoteFileManager.Core.dll
+D:\personal\N3-K1\NetworkProgramming (8)\final\RemoteFileManager\RemoteFileManager.Application\bin\Debug\net10.0\RemoteFileManager.Core.pdb
+D:\personal\N3-K1\NetworkProgramming (8)\final\RemoteFileManager\RemoteFileManager.Application\obj\Debug\net10.0\RemoteFi.87D5CE40.Up2Date
+D:\personal\N3-K1\NetworkProgramming (8)\final\RemoteFileManager\RemoteFileManager.Application\obj\Debug\net10.0\RemoteFileManager.Application.dll
+D:\personal\N3-K1\NetworkProgramming (8)\final\RemoteFileManager\RemoteFileManager.Application\obj\Debug\net10.0\refint\RemoteFileManager.Application.dll
+D:\personal\N3-K1\NetworkProgramming (8)\final\RemoteFileManager\RemoteFileManager.Application\obj\Debug\net10.0\RemoteFileManager.Application.pdb
+D:\personal\N3-K1\NetworkProgramming (8)\final\RemoteFileManager\RemoteFileManager.Application\obj\Debug\net10.0\ref\RemoteFileManager.Application.dll

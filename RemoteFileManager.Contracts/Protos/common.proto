@@ -1,0 +1,13 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "RemoteFileManager.Contracts.Common";
+
+// Empty message for RPCs that don't need request/response data
+message Empty {}
+
+// Generic operation result
+message OperationResult {
+  bool success = 1;
+  string message = 2;
+  string error_code = 3;
+}

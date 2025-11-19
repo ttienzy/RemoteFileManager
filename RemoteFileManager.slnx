@@ -1,0 +1,9 @@
+<Solution>
+  <Project Path="RemoteFileManager.Application/RemoteFileManager.Application.csproj" />
+  <Project Path="RemoteFileManager.Client/RemoteFileManager.Client.csproj" />
+  <Project Path="RemoteFileManager.Contracts/RemoteFileManager.Contracts.csproj" />
+  <Project Path="RemoteFileManager.Core/RemoteFileManager.Core.csproj" />
+  <Project Path="RemoteFileManager.Infrastructure/RemoteFileManager.Infrastructure.csproj" />
+  <Project Path="RemoteFileManager.Server/RemoteFileManager.Server.csproj" />
+  <Project Path="Test/Test.csproj" Id="e31604d9-85cf-44c1-9a15-dec48cc98ca4" />
+</Solution>
