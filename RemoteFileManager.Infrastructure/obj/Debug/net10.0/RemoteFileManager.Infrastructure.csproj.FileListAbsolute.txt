@@ -63,3 +63,4 @@ D:\personal\N3-K1\NetworkProgramming (8)\final\RemoteFileManager\RemoteFileManag
 D:\personal\N3-K1\NetworkProgramming (8)\final\RemoteFileManager\RemoteFileManager.Infrastructure\obj\Debug\net10.0\RemoteFileManager.Infrastructure.pdb
 D:\personal\N3-K1\NetworkProgramming (8)\final\RemoteFileManager\RemoteFileManager.Infrastructure\obj\Debug\net10.0\RemoteFileManager.Infrastructure.genruntimeconfig.cache
 D:\personal\N3-K1\NetworkProgramming (8)\final\RemoteFileManager\RemoteFileManager.Infrastructure\obj\Debug\net10.0\ref\RemoteFileManager.Infrastructure.dll
+D:\personal\N3-K1\NetworkProgramming (8)\final\RemoteFileManager\RemoteFileManager.Infrastructure\obj\Debug\net10.0\RemoteFileManager.Infrastructure.sourcelink.json

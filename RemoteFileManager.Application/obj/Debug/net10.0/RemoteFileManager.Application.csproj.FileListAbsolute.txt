@@ -13,3 +13,4 @@ D:\personal\N3-K1\NetworkProgramming (8)\final\RemoteFileManager\RemoteFileManag
 D:\personal\N3-K1\NetworkProgramming (8)\final\RemoteFileManager\RemoteFileManager.Application\obj\Debug\net10.0\refint\RemoteFileManager.Application.dll
 D:\personal\N3-K1\NetworkProgramming (8)\final\RemoteFileManager\RemoteFileManager.Application\obj\Debug\net10.0\RemoteFileManager.Application.pdb
 D:\personal\N3-K1\NetworkProgramming (8)\final\RemoteFileManager\RemoteFileManager.Application\obj\Debug\net10.0\ref\RemoteFileManager.Application.dll
+D:\personal\N3-K1\NetworkProgramming (8)\final\RemoteFileManager\RemoteFileManager.Application\obj\Debug\net10.0\RemoteFileManager.Application.sourcelink.json

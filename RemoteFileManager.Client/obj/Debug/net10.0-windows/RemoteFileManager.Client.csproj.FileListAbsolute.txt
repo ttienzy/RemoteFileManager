@@ -62,3 +62,4 @@ D:\personal\N3-K1\NetworkProgramming (8)\final\RemoteFileManager\RemoteFileManag
 D:\personal\N3-K1\NetworkProgramming (8)\final\RemoteFileManager\RemoteFileManager.Client\obj\Debug\net10.0-windows\GeneratedInternalTypeHelper.g.cs
 D:\personal\N3-K1\NetworkProgramming (8)\final\RemoteFileManager\RemoteFileManager.Client\obj\Debug\net10.0-windows\RemoteFileManager.Client_MarkupCompile.lref
 D:\personal\N3-K1\NetworkProgramming (8)\final\RemoteFileManager\RemoteFileManager.Client\obj\Debug\net10.0-windows\App.baml
+D:\personal\N3-K1\NetworkProgramming (8)\final\RemoteFileManager\RemoteFileManager.Client\obj\Debug\net10.0-windows\RemoteFileManager.Client.sourcelink.json

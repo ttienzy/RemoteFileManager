@@ -75,14 +75,29 @@ public class GrpcFileManagerService : FileManagerService.FileManagerServiceBase
         _logger.LogInformation("DeleteFile request: {FilePath}", request.FilePath);
 
         var user = await GetUserFromContext(context);
-        var result = await _fileManagementService.DeleteFileAsync(request.FilePath, user.Id);
 
-        return new OperationResult
+        try
         {
-            Success = result.Success,
-            Message = result.Message,
-            ErrorCode = result.ErrorCode ?? string.Empty
-        };
+            var result = await _fileManagementService.DeleteFileAsync(request.FilePath, user.Id);
+
+            return new OperationResult
+            {
+                Success = result.Success,
+                Message = result.Message,
+                ErrorCode = result.ErrorCode ?? string.Empty
+            };
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error deleting file/folder: {FilePath}", request.FilePath);
+
+            return new OperationResult
+            {
+                Success = false,
+                Message = $"Delete failed: {ex.Message}",
+                ErrorCode = "DELETE_ERROR"
+            };
+        }
     }
 
     public override async Task<OperationResult> RenameFile(RenameFileRequest request, ServerCallContext context)
@@ -126,37 +141,74 @@ public class GrpcFileManagerService : FileManagerService.FileManagerServiceBase
 
         string fileName = string.Empty;
         string destinationPath = string.Empty;
+        int totalChunks = 0;
 
         async IAsyncEnumerable<byte[]> ReadChunks()
         {
             await foreach (var chunk in requestStream.ReadAllAsync())
             {
+                // Lấy metadata từ chunk đầu tiên
                 if (string.IsNullOrEmpty(fileName))
                 {
                     fileName = chunk.FileName;
                     destinationPath = chunk.DestinationPath;
-                    _logger.LogInformation("Receiving file: {FileName} to {Path}", fileName, destinationPath);
+                    totalChunks = chunk.TotalChunks;
+
+                    _logger.LogInformation(
+                        "Receiving file: {FileName} to {Path} (Total chunks: {TotalChunks})",
+                        fileName,
+                        destinationPath,
+                        totalChunks);
+
+                    // Validation
+                    if (string.IsNullOrWhiteSpace(fileName))
+                    {
+                        _logger.LogError("FileName is empty in upload request");
+                        throw new RpcException(new Status(StatusCode.InvalidArgument, "FileName cannot be empty"));
+                    }
+
+                    if (string.IsNullOrWhiteSpace(destinationPath))
+                    {
+                        _logger.LogWarning("DestinationPath is empty, using root path");
+                        destinationPath = "/";
+                    }
                 }
 
                 yield return chunk.Data.ToByteArray();
             }
         }
 
-        var (success, message, savedPath, fileSize) = await _streamingService.HandleUploadAsync(
-            ReadChunks(),
-            fileName,
-            destinationPath,
-            user.Id);
-
-        _logger.LogInformation("Upload completed: Success={Success}, Path={Path}", success, savedPath);
-
-        return new UploadFileResponse
+        try
         {
-            Success = success,
-            Message = message,
-            SavedPath = savedPath ?? string.Empty,
-            FileSize = fileSize
-        };
+            var (success, message, savedPath, fileSize) = await _streamingService.HandleUploadAsync(
+                ReadChunks(),
+                fileName,
+                destinationPath,
+                user.Id);
+
+            _logger.LogInformation("Upload completed: Success={Success}, Path={Path}, Size={Size}",
+                success, savedPath, fileSize);
+
+            return new UploadFileResponse
+            {
+                Success = success,
+                Message = message,
+                SavedPath = savedPath ?? string.Empty,
+                FileSize = fileSize
+            };
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Upload failed for file: {FileName}", fileName);
+
+            return new UploadFileResponse
+            {
+                Success = false,
+                Message = $"Upload failed: {ex.Message}",
+                SavedPath = string.Empty,
+                FileSize = 0
+            };
+        }
     }
 
     public override async Task DownloadFile(
@@ -171,16 +223,26 @@ public class GrpcFileManagerService : FileManagerService.FileManagerServiceBase
         int chunkIndex = 0;
         var fileName = Path.GetFileName(request.FilePath);
 
+        // Get file size to calculate total chunks
+        var fileInfo = new System.IO.FileInfo(request.FilePath);
+        const int chunkSize = 64 * 1024; // 64KB
+        var totalChunks = (int)Math.Ceiling((double)fileInfo.Length / chunkSize);
+
+        _logger.LogInformation("Starting download: {FileName}, Size: {Size}, Total chunks: {TotalChunks}",
+            fileName, fileInfo.Length, totalChunks);
+
         await foreach (var chunkData in _streamingService.HandleDownloadAsync(request.FilePath, user.Id))
         {
             var chunk = new FileChunk
             {
                 FileName = fileName,
                 Data = Google.Protobuf.ByteString.CopyFrom(chunkData),
-                ChunkIndex = chunkIndex++
+                ChunkIndex = chunkIndex,
+                TotalChunks = totalChunks  // ← FIX: Gửi TotalChunks để client tính progress
             };
 
             await responseStream.WriteAsync(chunk);
+            chunkIndex++;
         }
 
         _logger.LogInformation("Download completed: {FilePath}, Total chunks: {ChunkCount}",

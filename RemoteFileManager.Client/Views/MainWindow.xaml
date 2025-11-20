@@ -1,6 +1,7 @@
 ﻿<Window x:Class="RemoteFileManager.Client.Views.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:converters="clr-namespace:RemoteFileManager.Client.Converters"
         Title="Remote File Manager"
         Height="700" Width="1200"
         WindowStartupLocation="CenterScreen"
@@ -8,6 +9,16 @@
 
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BoolToVis"/>
+        <converters:NotNullToBooleanConverter x:Key="NotNullToBooleanConverter"/>
+
+        <!-- Style cho các nút để chắc chắn hiển thị đúng -->
+        <Style x:Key="ToolbarButtonStyle" TargetType="Button">
+            <Setter Property="Margin" Value="5,0"/>
+            <Setter Property="Padding" Value="10,5"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="MinWidth" Value="80"/>
+            <Setter Property="Height" Value="32"/>
+        </Style>
     </Window.Resources>
 
     <Grid>
@@ -43,77 +54,65 @@
         <Border Background="White" Grid.Row="1" BorderBrush="#DDD" BorderThickness="0,0,0,1">
             <StackPanel Orientation="Horizontal" Margin="10,0">
 
-                <!-- Navigation -->
-                <Button Content="⬆️ Up"
+                <!-- Navigation - FIX: Thêm Content rõ ràng -->
+                <Button Content="↑ Up"
                        Command="{Binding NavigateUpCommand}"
-                       Margin="5,0"
-                       Padding="10,5"
+                       Style="{StaticResource ToolbarButtonStyle}"
                        Background="Transparent"
                        BorderThickness="1"
                        BorderBrush="#DDD"
-                       Cursor="Hand"/>
+                       ToolTip="Go to parent folder"/>
 
                 <Button Content="🔄 Refresh"
                        Command="{Binding RefreshCommand}"
-                       Margin="5,0"
-                       Padding="10,5"
+                       Style="{StaticResource ToolbarButtonStyle}"
                        Background="Transparent"
                        BorderThickness="1"
                        BorderBrush="#DDD"
-                       Cursor="Hand"/>
+                       ToolTip="Refresh file list"/>
 
                 <Rectangle Width="1" Fill="#DDD" Margin="10,5"/>
 
                 <!-- File Operations -->
                 <Button Content="📁 New Folder"
                        Command="{Binding CreateFolderCommand}"
-                       Margin="5,0"
-                       Padding="10,5"
+                       Style="{StaticResource ToolbarButtonStyle}"
                        Background="#673AB7"
                        Foreground="White"
-                       BorderThickness="0"
-                       Cursor="Hand"/>
+                       BorderThickness="0"/>
 
                 <Button Content="⬆️ Upload"
                        Command="{Binding UploadFileCommand}"
-                       Margin="5,0"
-                       Padding="10,5"
+                       Style="{StaticResource ToolbarButtonStyle}"
                        Background="#4CAF50"
                        Foreground="White"
-                       BorderThickness="0"
-                       Cursor="Hand"/>
+                       BorderThickness="0"/>
 
                 <Button Content="⬇️ Download"
                        Command="{Binding DownloadFileCommand}"
-                       Margin="5,0"
-                       Padding="10,5"
+                       Style="{StaticResource ToolbarButtonStyle}"
                        Background="#2196F3"
                        Foreground="White"
                        BorderThickness="0"
-                       Cursor="Hand"
                        IsEnabled="{Binding SelectedFile, Converter={StaticResource NotNullToBooleanConverter}}"/>
 
-                <Button Content="✏️"
+                <Button Content="✏️ Rename"
                        Command="{Binding RenameFileCommand}"
-                       Margin="5,0"
-                       Padding="10,5"
+                       Style="{StaticResource ToolbarButtonStyle}"
                        Background="Transparent"
                        BorderThickness="1"
                        BorderBrush="#DDD"
-                       Cursor="Hand"
-                       ToolTip="Rename"
+                       ToolTip="Rename selected item"
                        IsEnabled="{Binding SelectedFile, Converter={StaticResource NotNullToBooleanConverter}}"/>
 
-                <Button Content="🗑️"
+                <Button Content="🗑️ Delete"
                        Command="{Binding DeleteFileCommand}"
-                       Margin="5,0"
-                       Padding="10,5"
+                       Style="{StaticResource ToolbarButtonStyle}"
                        Background="Transparent"
                        BorderThickness="1"
                        BorderBrush="#DDD"
                        Foreground="Red"
-                       Cursor="Hand"
-                       ToolTip="Delete"
+                       ToolTip="Delete selected item"
                        IsEnabled="{Binding SelectedFile, Converter={StaticResource NotNullToBooleanConverter}}"/>
 
                 <Rectangle Width="1" Fill="#DDD" Margin="10,5"/>
@@ -123,21 +122,21 @@
                         Width="200"
                         Margin="5,0"
                         Padding="8"
+                        VerticalContentAlignment="Center"
                         BorderBrush="#DDD"
-                        BorderThickness="1">
+                        BorderThickness="1"
+                        Height="32">
                     <TextBox.InputBindings>
                         <KeyBinding Key="Enter" Command="{Binding SearchFilesCommand}"/>
                     </TextBox.InputBindings>
                 </TextBox>
 
-                <Button Content="🔍"
+                <Button Content="🔍 Search"
                        Command="{Binding SearchFilesCommand}"
-                       Margin="5,0"
-                       Padding="10,5"
+                       Style="{StaticResource ToolbarButtonStyle}"
                        Background="Transparent"
                        BorderThickness="1"
-                       BorderBrush="#DDD"
-                       Cursor="Hand"/>
+                       BorderBrush="#DDD"/>
             </StackPanel>
         </Border>
 
@@ -145,12 +144,13 @@
         <Border Grid.Row="2" Background="White" Margin="10" BorderBrush="#DDD" BorderThickness="1">
             <Grid>
                 <!-- Current Path -->
-                <TextBlock Text="{Binding CurrentPath, StringFormat='📂 {0}'}"
+                <TextBlock Text="{Binding CurrentPath, StringFormat='📂 Current Path: {0}'}"
                           FontSize="12"
                           Margin="15,10"
                           VerticalAlignment="Top"
                           Foreground="#666"
-                          Background="White"/>
+                          Background="White"
+                          FontWeight="SemiBold"/>
 
                 <!-- File DataGrid -->
                 <DataGrid ItemsSource="{Binding Files}"
@@ -164,7 +164,8 @@
                          HeadersVisibility="Column"
                          Margin="0,40,0,0"
                          BorderThickness="0"
-                         Background="White">
+                         Background="White"
+                         AlternatingRowBackground="#F9F9F9">
 
                     <DataGrid.InputBindings>
                         <MouseBinding Gesture="LeftDoubleClick" 
@@ -186,8 +187,9 @@
                      Visibility="{Binding IsLoading, Converter={StaticResource BoolToVis}}">
                     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                         <ProgressBar IsIndeterminate="True"
-                                   Width="100" Height="100"
-                                   Style="{StaticResource MaterialDesignCircularProgressBar}"/>
+                                   Width="100" 
+                                   Height="20"
+                                   Margin="0,10"/>
                         <TextBlock Text="Loading..." 
                                  Foreground="White"
                                  FontSize="16"
