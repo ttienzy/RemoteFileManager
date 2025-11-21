@@ -139,47 +139,64 @@ public class GrpcFileManagerService : FileManagerService.FileManagerServiceBase
 
         var user = await GetUserFromContext(context);
 
-        string fileName = string.Empty;
-        string destinationPath = string.Empty;
-        int totalChunks = 0;
-
-        async IAsyncEnumerable<byte[]> ReadChunks()
-        {
-            await foreach (var chunk in requestStream.ReadAllAsync())
-            {
-                // Lấy metadata từ chunk đầu tiên
-                if (string.IsNullOrEmpty(fileName))
-                {
-                    fileName = chunk.FileName;
-                    destinationPath = chunk.DestinationPath;
-                    totalChunks = chunk.TotalChunks;
-
-                    _logger.LogInformation(
-                        "Receiving file: {FileName} to {Path} (Total chunks: {TotalChunks})",
-                        fileName,
-                        destinationPath,
-                        totalChunks);
-
-                    // Validation
-                    if (string.IsNullOrWhiteSpace(fileName))
-                    {
-                        _logger.LogError("FileName is empty in upload request");
-                        throw new RpcException(new Status(StatusCode.InvalidArgument, "FileName cannot be empty"));
-                    }
-
-                    if (string.IsNullOrWhiteSpace(destinationPath))
-                    {
-                        _logger.LogWarning("DestinationPath is empty, using root path");
-                        destinationPath = "/";
-                    }
-                }
-
-                yield return chunk.Data.ToByteArray();
-            }
-        }
-
         try
         {
+            // Read first chunk to get metadata
+            if (!await requestStream.MoveNext(context.CancellationToken))
+            {
+                _logger.LogError("No chunks received in upload request");
+                return new UploadFileResponse
+                {
+                    Success = false,
+                    Message = "No data received",
+                    SavedPath = string.Empty,
+                    FileSize = 0
+                };
+            }
+
+            var firstChunk = requestStream.Current;
+            var fileName = firstChunk.FileName;
+            var destinationPath = firstChunk.DestinationPath;
+            var totalChunks = firstChunk.TotalChunks;
+
+            _logger.LogInformation(
+                "Receiving file: {FileName} to {Path} (Total chunks: {TotalChunks})",
+                fileName,
+                destinationPath,
+                totalChunks);
+
+            // Validation
+            if (string.IsNullOrWhiteSpace(fileName))
+            {
+                _logger.LogError("FileName is empty in upload request");
+                return new UploadFileResponse
+                {
+                    Success = false,
+                    Message = "File name cannot be empty",
+                    SavedPath = string.Empty,
+                    FileSize = 0
+                };
+            }
+
+            if (string.IsNullOrWhiteSpace(destinationPath))
+            {
+                _logger.LogWarning("DestinationPath is empty, using root path");
+                destinationPath = "/";
+            }
+
+            // Create async enumerable that includes first chunk
+            async IAsyncEnumerable<byte[]> ReadChunks()
+            {
+                // Yield first chunk data
+                yield return firstChunk.Data.ToByteArray();
+
+                // Yield remaining chunks
+                while (await requestStream.MoveNext(context.CancellationToken))
+                {
+                    yield return requestStream.Current.Data.ToByteArray();
+                }
+            }
+
             var (success, message, savedPath, fileSize) = await _streamingService.HandleUploadAsync(
                 ReadChunks(),
                 fileName,
@@ -199,7 +216,7 @@ public class GrpcFileManagerService : FileManagerService.FileManagerServiceBase
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Upload failed for file: {FileName}", fileName);
+            _logger.LogError(ex, "Upload failed: {Message}", ex.Message);
 
             return new UploadFileResponse
             {

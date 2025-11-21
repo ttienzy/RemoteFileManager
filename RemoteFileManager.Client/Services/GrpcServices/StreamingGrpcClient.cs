@@ -49,6 +49,9 @@ public class StreamingGrpcClient
         const int chunkSize = 64 * 1024; // 64KB
         var totalChunks = (int)Math.Ceiling((double)totalSize / chunkSize);
 
+        // Log for debugging
+        System.Diagnostics.Debug.WriteLine($"Upload: FileName={fileName}, DestPath={destinationPath}, TotalChunks={totalChunks}");
+
         try
         {
             using var fileStream = File.OpenRead(localFilePath);
@@ -61,12 +64,18 @@ public class StreamingGrpcClient
                 var chunk = new FileChunk
                 {
                     FileName = fileName,
-                    DestinationPath = destinationPath,
+                    DestinationPath = destinationPath ?? "/",  // Ensure not null
                     Data = Google.Protobuf.ByteString.CopyFrom(buffer, 0, bytesRead),
                     ChunkIndex = chunkIndex,
                     TotalChunks = totalChunks,
                     Token = _token
                 };
+
+                // Debug first chunk
+                if (chunkIndex == 0)
+                {
+                    System.Diagnostics.Debug.WriteLine($"First chunk - FileName: '{chunk.FileName}', DestPath: '{chunk.DestinationPath}', DataLen: {chunk.Data.Length}");
+                }
 
                 await call.RequestStream.WriteAsync(chunk);
 
@@ -86,10 +95,13 @@ public class StreamingGrpcClient
             // Ensure 100% reported
             progress?.Report(100);
 
+            System.Diagnostics.Debug.WriteLine($"Upload response: Success={response.Success}, Message={response.Message}");
+
             return response;
         }
         catch (Exception ex)
         {
+            System.Diagnostics.Debug.WriteLine($"Upload error: {ex.Message}");
             throw new Exception($"Upload failed: {ex.Message}", ex);
         }
     }

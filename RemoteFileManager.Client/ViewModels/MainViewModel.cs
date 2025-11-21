@@ -69,6 +69,8 @@ public partial class MainViewModel : ObservableObject
 
         try
         {
+            System.Diagnostics.Debug.WriteLine($"LoadFiles - CurrentPath: '{CurrentPath}'");
+
             var response = await _fileManagerClient.ListFilesAsync(CurrentPath);
 
             Files.Clear();
@@ -269,20 +271,31 @@ public partial class MainViewModel : ObservableObject
 
         IsUploading = true;
         UploadProgress = 0;
-        StatusMessage = "Uploading...";
+        StatusMessage = "Preparing upload...";
 
         try
         {
+            // Debug log
+            System.Diagnostics.Debug.WriteLine($"=== UPLOAD DEBUG ===");
+            System.Diagnostics.Debug.WriteLine($"Selected file: {dialog.FileName}");
+            System.Diagnostics.Debug.WriteLine($"Current path: '{CurrentPath}'");
+            System.Diagnostics.Debug.WriteLine($"File exists: {File.Exists(dialog.FileName)}");
+            System.Diagnostics.Debug.WriteLine($"File size: {new FileInfo(dialog.FileName).Length} bytes");
+
             var progress = new Progress<int>(percent =>
             {
                 UploadProgress = percent;
                 StatusMessage = $"Uploading... {percent}%";
             });
 
+            StatusMessage = "Uploading...";
+
             var response = await _streamingClient.UploadFileAsync(
                 dialog.FileName,
-                CurrentPath,
+                CurrentPath,  // This should NOT be empty or null
                 progress);
+
+            System.Diagnostics.Debug.WriteLine($"Upload response: Success={response.Success}, Message={response.Message}");
 
             if (response.Success)
             {
@@ -303,6 +316,7 @@ public partial class MainViewModel : ObservableObject
         }
         catch (Exception ex)
         {
+            System.Diagnostics.Debug.WriteLine($"Upload exception: {ex}");
             MessageBox.Show($"Upload failed: {ex.Message}", "Error",
                 MessageBoxButton.OK, MessageBoxImage.Error);
         }

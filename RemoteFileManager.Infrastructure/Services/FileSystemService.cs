@@ -207,8 +207,35 @@ public class FileSystemService : IFileSystemService
 
     private string GetFullPath(string path)
     {
-        // Remove leading slash or backslash
+        // Handle null or empty path
+        if (string.IsNullOrWhiteSpace(path))
+        {
+            return _rootPath;
+        }
+
+        // If path is already absolute and starts with root, return as-is
+        if (Path.IsPathRooted(path))
+        {
+            var normalizedPath = Path.GetFullPath(path);
+
+            // Security check: ensure path is within root directory
+            if (!normalizedPath.StartsWith(_rootPath, StringComparison.OrdinalIgnoreCase))
+            {
+                throw new UnauthorizedAccessException($"Access to path outside root directory is not allowed: {path}");
+            }
+
+            return normalizedPath;
+        }
+
+        // Handle relative paths
+        // Remove leading slash or backslash for relative paths only
         path = path.TrimStart('/', '\\');
+
+        // If path is now empty after trimming (was just "/"), return root
+        if (string.IsNullOrWhiteSpace(path))
+        {
+            return _rootPath;
+        }
 
         // Combine with root path
         var fullPath = Path.Combine(_rootPath, path);
@@ -219,7 +246,7 @@ public class FileSystemService : IFileSystemService
         // Security check: ensure path is within root directory
         if (!fullPath.StartsWith(_rootPath, StringComparison.OrdinalIgnoreCase))
         {
-            throw new UnauthorizedAccessException("Access to path outside root directory is not allowed");
+            throw new UnauthorizedAccessException($"Access to path outside root directory is not allowed: {path}");
         }
 
         return fullPath;
