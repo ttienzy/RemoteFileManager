@@ -1,0 +1,20 @@
+﻿RemoteFileManager.Client
+1.0.0.0
+
+winexe
+C#
+.cs
+D:\personal\N3-K1\NetworkProgramming (8)\final_v1\RemoteFileManager\RemoteFileManager.Client\obj\Debug\net10.0-windows\
+RemoteFileManager.Client
+none
+false
+TRACE;DEBUG;NET;NET10_0;NETCOREAPP;WINDOWS;WINDOWS7_0;NET5_0_OR_GREATER;NET6_0_OR_GREATER;NET7_0_OR_GREATER;NET8_0_OR_GREATER;NET9_0_OR_GREATER;NET10_0_OR_GREATER;NETCOREAPP3_0_OR_GREATER;NETCOREAPP3_1_OR_GREATER;WINDOWS7_0_OR_GREATER
+D:\personal\N3-K1\NetworkProgramming (8)\final_v1\RemoteFileManager\RemoteFileManager.Client\App.xaml
+51097683575
+22-1380674967
+18-1353551982
+212-334479858
+MainWindow.xaml;Views\CreateFolderDialog.xaml;Views\FileExplorerView.xaml;Views\LoginView.xaml;Views\UploadDialog.xaml;
+
+True
+

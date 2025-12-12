@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "PK2g+dv5Mb8=",
+  "success": true,
+  "projectFilePath": "D:\\personal\\N3-K1\\NetworkProgramming (8)\\final_v1\\RemoteFileManager\\RemoteFileManager.Server\\RemoteFileManager.Server.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\ASUS\\.nuget\\packages\\newtonsoft.json\\13.0.4\\newtonsoft.json.13.0.4.nupkg.sha512"
+  ],
+  "logs": []
+}

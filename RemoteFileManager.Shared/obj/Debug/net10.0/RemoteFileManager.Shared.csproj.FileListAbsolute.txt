@@ -1,0 +1,12 @@
+D:\personal\N3-K1\NetworkProgramming (8)\final_v1\RemoteFileManager\RemoteFileManager.Shared\obj\Debug\net10.0\RemoteFileManager.Shared.GeneratedMSBuildEditorConfig.editorconfig
+D:\personal\N3-K1\NetworkProgramming (8)\final_v1\RemoteFileManager\RemoteFileManager.Shared\obj\Debug\net10.0\RemoteFileManager.Shared.AssemblyInfoInputs.cache
+D:\personal\N3-K1\NetworkProgramming (8)\final_v1\RemoteFileManager\RemoteFileManager.Shared\obj\Debug\net10.0\RemoteFileManager.Shared.AssemblyInfo.cs
+D:\personal\N3-K1\NetworkProgramming (8)\final_v1\RemoteFileManager\RemoteFileManager.Shared\obj\Debug\net10.0\RemoteFileManager.Shared.csproj.CoreCompileInputs.cache
+D:\personal\N3-K1\NetworkProgramming (8)\final_v1\RemoteFileManager\RemoteFileManager.Shared\obj\Debug\net10.0\RemoteFileManager.Shared.csproj.AssemblyReference.cache
+D:\personal\N3-K1\NetworkProgramming (8)\final_v1\RemoteFileManager\RemoteFileManager.Shared\bin\Debug\net10.0\RemoteFileManager.Shared.deps.json
+D:\personal\N3-K1\NetworkProgramming (8)\final_v1\RemoteFileManager\RemoteFileManager.Shared\bin\Debug\net10.0\RemoteFileManager.Shared.dll
+D:\personal\N3-K1\NetworkProgramming (8)\final_v1\RemoteFileManager\RemoteFileManager.Shared\bin\Debug\net10.0\RemoteFileManager.Shared.pdb
+D:\personal\N3-K1\NetworkProgramming (8)\final_v1\RemoteFileManager\RemoteFileManager.Shared\obj\Debug\net10.0\RemoteFileManager.Shared.dll
+D:\personal\N3-K1\NetworkProgramming (8)\final_v1\RemoteFileManager\RemoteFileManager.Shared\obj\Debug\net10.0\refint\RemoteFileManager.Shared.dll
+D:\personal\N3-K1\NetworkProgramming (8)\final_v1\RemoteFileManager\RemoteFileManager.Shared\obj\Debug\net10.0\RemoteFileManager.Shared.pdb
+D:\personal\N3-K1\NetworkProgramming (8)\final_v1\RemoteFileManager\RemoteFileManager.Shared\obj\Debug\net10.0\ref\RemoteFileManager.Shared.dll

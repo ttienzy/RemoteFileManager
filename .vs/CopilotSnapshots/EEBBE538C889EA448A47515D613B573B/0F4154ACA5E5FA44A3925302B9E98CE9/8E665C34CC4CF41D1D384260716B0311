@@ -1,0 +1,32 @@
+﻿using RemoteFileManager.Shared.Enums;
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace RemoteFileManager.Shared.Models.Network
+{
+    public class Packet
+    {
+        public CommandCode Command { get; set; }
+
+        // Payload chứa JSON của các Model khác (FileDto, ProcessDto...)
+        public string Payload { get; set; } = string.Empty;
+
+        public string Message { get; set; } = string.Empty; // Thông báo lỗi/Debug
+
+        public DateTime Timestamp { get; set; } = DateTime.Now;
+
+        // Hàm tiện ích để đóng gói dữ liệu vào Payload
+        public void SetPayload<T>(T data)
+        {
+            Payload = System.Text.Json.JsonSerializer.Serialize(data);
+        }
+
+        // Hàm tiện ích để giải nén dữ liệu từ Payload
+        public T? GetPayload<T>()
+        {
+            if (string.IsNullOrEmpty(Payload)) return default;
+            return System.Text.Json.JsonSerializer.Deserialize<T>(Payload);
+        }
+    }
+}

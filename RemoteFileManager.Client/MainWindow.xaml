@@ -1,0 +1,28 @@
+﻿<Window x:Class="RemoteFileManager.Client.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:RemoteFileManager.Client.ViewModels"
+        xmlns:v="clr-namespace:RemoteFileManager.Client.Views"
+        mc:Ignorable="d"
+        Title="Remote File Manager Client" Height="600" Width="1000"
+        WindowStartupLocation="CenterScreen">
+    <!-- ĐÃ XÓA DÒNG DataContext=... vì ta set nó trong C# rồi -->
+
+    <Window.Resources>
+        <!-- Mapping: ViewModel nào thì hiển thị View đó -->
+        <!-- RẤT QUAN TRỌNG: Kiểm tra kỹ namespace vm và v -->
+
+        <DataTemplate DataType="{x:Type vm:LoginViewModel}">
+            <v:LoginView/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type vm:FileExplorerViewModel}">
+            <v:FileExplorerView/>
+        </DataTemplate>
+    </Window.Resources>
+
+    <!-- ContentControl này sẽ thay đổi nội dung dựa trên DataTemplate ở trên -->
+    <ContentControl Content="{Binding CurrentViewModel}" />
+</Window>

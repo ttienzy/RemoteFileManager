@@ -1,0 +1,37 @@
+﻿<UserControl x:Class="RemoteFileManager.Client.Views.CreateFolderDialog"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             Width="300">
+    <Grid Margin="20">
+        <StackPanel>
+            <!-- Tiêu đề -->
+            <TextBlock Text="Tạo Thư Mục Mới" Style="{StaticResource MaterialDesignHeadline6TextBlock}" Margin="0,0,0,20"/>
+
+            <!-- Ô nhập tên -->
+            <TextBox x:Name="FolderNameTextBox"
+                     materialDesign:HintAssist.Hint="Nhập tên folder..."
+                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                     Margin="0,0,0,20"/>
+
+            <!-- Nút bấm -->
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <!-- Nút Hủy: Trả về null -->
+                <Button Style="{StaticResource MaterialDesignFlatButton}"
+                        IsCancel="True"
+                        Margin="0,0,10,0"
+                        Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}">
+                    HỦY
+                </Button>
+
+                <!-- Nút Tạo: Trả về Text trong ô nhập -->
+                <Button Style="{StaticResource MaterialDesignFlatButton}"
+                        IsDefault="True"
+                        Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
+                        CommandParameter="{Binding Text, ElementName=FolderNameTextBox}">
+                    TẠO
+                </Button>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</UserControl>

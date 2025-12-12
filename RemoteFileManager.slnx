@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="RemoteFileManager.Client/RemoteFileManager.Client.csproj" />
+  <Project Path="RemoteFileManager.Server/RemoteFileManager.Server.csproj" />
+  <Project Path="RemoteFileManager.Shared/RemoteFileManager.Shared.csproj" />
+</Solution>

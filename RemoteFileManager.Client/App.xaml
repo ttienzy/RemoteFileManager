@@ -1,0 +1,23 @@
+﻿<Application x:Class="RemoteFileManager.Client.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <!-- 1. Cấu hình Theme màu sắc -->
+                <materialDesign:BundledTheme BaseTheme="Light" 
+                                             PrimaryColor="DeepPurple" 
+                                             SecondaryColor="Lime" />
+
+                <!-- 2. Nạp Defaults (QUAN TRỌNG: Dùng MaterialDesign3 hoặc MaterialDesign2) -->
+                <!-- Đã thay thế dòng cũ bị lỗi bằng dòng mới này -->
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign3.Defaults.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <!-- 3. Khai báo Converter (Để dùng trong Binding Visibility) -->
+            <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
