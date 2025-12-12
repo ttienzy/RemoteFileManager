@@ -11,12 +11,12 @@
 using System;
 using System.Reflection;
 
-[assembly: System.Reflection.AssemblyCompanyAttribute("RemoteFileManager.Client")]
+[assembly: System.Reflection.AssemblyCompanyAttribute("RemoteFileManager.Server")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ada2d57f767c6905e79e1b3639336966722ba2b3")]
-[assembly: System.Reflection.AssemblyProductAttribute("RemoteFileManager.Client")]
-[assembly: System.Reflection.AssemblyTitleAttribute("RemoteFileManager.Client")]
+[assembly: System.Reflection.AssemblyProductAttribute("RemoteFileManager.Server")]
+[assembly: System.Reflection.AssemblyTitleAttribute("RemoteFileManager.Server")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
 [assembly: System.Runtime.Versioning.TargetPlatformAttribute("Windows7.0")]
 [assembly: System.Runtime.Versioning.SupportedOSPlatformAttribute("Windows7.0")]
