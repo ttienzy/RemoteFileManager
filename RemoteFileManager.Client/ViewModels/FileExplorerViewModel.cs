@@ -32,6 +32,11 @@ namespace RemoteFileManager.Client.ViewModels
         private string? _pendingUploadPath;
         private bool _pendingUploadDeleteTemp;
 
+        private readonly HashSet<string> _editableExtensions = new()
+{
+    ".txt", ".log", ".json", ".xml", ".config", ".cs", ".html", ".css", ".js", ".md", ".ini", ".bat", ".sh"
+};
+        public SnackbarMessageQueue MessageQueue { get; } = new SnackbarMessageQueue(TimeSpan.FromSeconds(3));
         // Thêm Property
         public bool IsDownloading
         {
@@ -64,6 +69,9 @@ namespace RemoteFileManager.Client.ViewModels
             CreateFolderCommand = new RelayCommand(ExecuteCreateFolder);
             DownloadItemCommand = new RelayCommand(ExecuteDownloadItem);
             UploadFileCommand = new RelayCommand(ExecuteUploadFile);
+            SendClipboardCommand = new RelayCommand(ExecuteSendClipboard);
+            GetClipboardCommand = new RelayCommand(ExecuteGetClipboard);
+            EditFileCommand = new RelayCommand(ExecuteEditFile);
 
             // Tự động tải danh sách ổ đĩa khi vừa vào màn hình này
             LoadData();
@@ -95,6 +103,72 @@ namespace RemoteFileManager.Client.ViewModels
         public ICommand CreateFolderCommand { get; }
         public ICommand DownloadItemCommand { get; }
         public ICommand UploadFileCommand { get; }
+        public ICommand SendClipboardCommand { get; }
+        public ICommand GetClipboardCommand { get; }
+        public ICommand EditFileCommand { get; }
+        private void ExecuteEditFile(object? item)
+        {
+            if (item is FileDto file)
+            {
+                string ext = Path.GetExtension(file.Name).ToLower();
+
+                // Kiểm tra xem có trong danh sách hỗ trợ không
+                if (!_editableExtensions.Contains(ext))
+                {
+                    MessageBox.Show($"Chức năng sửa chưa hỗ trợ định dạng '{ext}'.\nChỉ hỗ trợ file văn bản.",
+                                    "Thông báo", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
+
+                IsLoading = true;
+                // Gửi yêu cầu lấy nội dung
+                SendRequest(CommandCode.GetFileContent, file.FullPath);
+            }
+        }
+        private async void ShowEditorDialog(FileContentDto dto)
+        {
+            var editorView = new TextEditorDialog();
+            editorView.FileNameText.Text = $"Đang sửa: {Path.GetFileName(dto.FullPath)}";
+            editorView.EditorTextBox.Text = dto.Content;
+
+            // Cuộn con trỏ lên đầu
+            editorView.EditorTextBox.CaretIndex = 0;
+
+            // Hiện Dialog
+            var result = await DialogHost.Show(editorView, "RootDialog");
+
+            // Nếu user bấm Lưu (Result trả về string content)
+            if (result is string newContent)
+            {
+                // Gửi lệnh lưu về Server
+                var saveDto = new FileContentDto
+                {
+                    FullPath = dto.FullPath,
+                    Content = newContent
+                };
+                SendRequest(CommandCode.SaveFileContent, saveDto);
+
+                IsLoading = true; // Hiện loading chờ server lưu
+            }
+        }
+        private void ExecuteSendClipboard(object? obj)
+        {
+            // Lấy text từ Clipboard máy Client
+            if (Clipboard.ContainsText())
+            {
+                string text = Clipboard.GetText();
+                SendRequest(CommandCode.SendClipboard, text);
+                MessageBox.Show("Đã gửi nội dung Clipboard lên Server!");
+            }
+            else
+            {
+                MessageBox.Show("Clipboard trống hoặc không phải text.");
+            }
+        }
+        private void ExecuteGetClipboard(object? obj)
+        {
+            SendRequest(CommandCode.GetClipboard);
+        }
         private void ExecuteDeleteItem(object? item)
         {
             if (item is FileDto fileDto)
@@ -239,12 +313,42 @@ namespace RemoteFileManager.Client.ViewModels
                 case CommandCode.DeleteItem:
                 case CommandCode.CreateFolder:
                 case CommandCode.SystemAlert:
+                case CommandCode.SaveFileContent:
                 case CommandCode.DownloadResponse:
                 case CommandCode.FileChunk: // Download
                     Application.Current.Dispatcher.Invoke(() =>
                     {
                         // Copy logic xử lý UI cũ của bạn vào đây
                         HandleUiCommands(packet);
+                    });
+                    break;
+                case CommandCode.GetClipboard:
+                    string text = packet.GetPayload<string>();
+                    Application.Current.Dispatcher.Invoke(() =>
+                    {
+                        if (!string.IsNullOrEmpty(text))
+                        {
+                            Clipboard.SetText(text);
+                            MessageBox.Show($"Đã lấy Clipboard từ Server:\n{text}");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Clipboard Server trống.");
+                        }
+                    });
+                    break;
+                
+                case CommandCode.GetFileContent:
+                    // BẮT BUỘC PHẢI DÙNG DISPATCHER
+                    Application.Current.Dispatcher.Invoke(() =>
+                    {
+                        IsLoading = false;
+                        var contentDto = packet.GetPayload<FileContentDto>();
+                        if (contentDto != null)
+                        {
+                            // Hàm này tạo new TextEditorDialog() -> Phải chạy trên UI Thread
+                            ShowEditorDialog(contentDto);
+                        }
                     });
                     break;
 
@@ -313,11 +417,29 @@ namespace RemoteFileManager.Client.ViewModels
                     }
                     break;
 
-                case CommandCode.SystemAlert: // Xử lý lỗi (ví dụ Access Denied)
+                case CommandCode.SystemAlert:
+                    // 1. Tắt loading dù có lỗi xảy ra (để người dùng còn thao tác tiếp)
                     IsLoading = false;
-                    MessageBox.Show(packet.Message, "Server Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                    // Quay lại thư mục trước đó nếu bị lỗi truy cập
-                    ExecuteGoBack(null);
+
+                    // 2. Hiện thông báo lỗi chi tiết từ Server (Icon X đỏ)
+                    // packet.Message sẽ chứa: "Lỗi khi lưu file: ...", "File quá lớn...", "Access Denied..."
+                    MessageQueue.Enqueue($"❌ {packet.Message}");
+
+                    // 3. (Logic phụ) Nếu lỗi là do mất kết nối hoặc sai đường dẫn nghiêm trọng
+                    // ta có thể kiểm tra chuỗi message để quyết định có back lại hay không.
+                    // Nhưng với lỗi lưu file thông thường, chỉ cần hiện thông báo là đủ.
+                    break;
+
+                case CommandCode.SaveFileContent:
+                    // 1. Quan trọng nhất: Tắt biểu tượng Loading quay quay
+                    IsLoading = false;
+
+                    // 2. Hiện thông báo thành công (Icon tích xanh)
+                    // MessageQueue đã được cấu hình tự tắt sau 3s
+                    MessageQueue.Enqueue("✅ Đã lưu thay đổi thành công!");
+
+                    // (Tùy chọn) Nếu muốn chắc chắn, có thể reload lại list file để cập nhật ngày sửa đổi/kích thước
+                    // LoadData(); 
                     break;
                 case CommandCode.DeleteItem:
                 case CommandCode.CreateFolder:

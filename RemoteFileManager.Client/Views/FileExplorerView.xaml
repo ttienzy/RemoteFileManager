@@ -26,6 +26,8 @@
                         <ColumnDefinition Width="Auto"/>
                         <!-- Cột 3: Upload (MỚI) -->
                         <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
                         <!-- Cột 4: Refresh -->
                     </Grid.ColumnDefinitions>
 
@@ -62,6 +64,18 @@
                             ToolTip="Refresh" Margin="5,0,0,0">
                         <materialDesign:PackIcon Kind="Refresh" />
                     </Button>
+                    <Button Grid.Column="5" Command="{Binding SendClipboardCommand}" 
+        Style="{StaticResource MaterialDesignIconButton}" 
+        ToolTip="Gửi Clipboard cho Server" Margin="5,0,0,0">
+                        <materialDesign:PackIcon Kind="ContentCopy" />
+                    </Button>
+
+                    <!-- Lấy Clipboard -->
+                    <Button Grid.Column="6" Command="{Binding GetClipboardCommand}" 
+        Style="{StaticResource MaterialDesignIconButton}" 
+        ToolTip="Lấy Clipboard từ Server" Margin="5,0,0,0">
+                        <materialDesign:PackIcon Kind="ContentPaste" />
+                    </Button>
                 </Grid>
             </materialDesign:Card>
 
@@ -93,6 +107,13 @@
                                                   Command="{Binding PlacementTarget.Tag.DownloadItemCommand, RelativeSource={RelativeSource AncestorType=ContextMenu}}"
                                                   CommandParameter="{Binding}"
                                                   Foreground="Green"/>
+                                        <Separator/>
+                                        <MenuItem Header="Edit File (Text)" 
+                                                  Icon="{materialDesign:PackIcon Kind=FileDocumentEdit}"
+                                                  Command="{Binding PlacementTarget.Tag.EditFileCommand, RelativeSource={RelativeSource AncestorType=ContextMenu}}"
+                                                  CommandParameter="{Binding}"
+                                                  Foreground="{DynamicResource MaterialDesign.Brush.Primary}"/>                             
+
                                         <Separator/>
                                         <MenuItem Header="Delete Item" 
                                                   Icon="{materialDesign:PackIcon Kind=Delete}"

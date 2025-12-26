@@ -2,10 +2,12 @@
 using RemoteFileManager.Server.Services.Implements;
 using RemoteFileManager.Server.Services.Interfaces;
 using RemoteFileManager.Shared.Enums;
+using RemoteFileManager.Shared.Models.FileSystem;
 using RemoteFileManager.Shared.Models.Network;
 using RemoteFileManager.Shared.Models.Transfer;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using System.Text.Json;
 
@@ -30,7 +32,7 @@ namespace RemoteFileManager.Server.Handlers
         {
             var response = new Packet
             {
-                Command = requestPacket.Command, // Trả về cùng loại lệnh để Client biết đang rep cái gì
+                Command = requestPacket.Command,
                 Timestamp = DateTime.Now
             };
 
@@ -46,7 +48,6 @@ namespace RemoteFileManager.Server.Handlers
                         break;
 
                     case CommandCode.GetDirectoryContent:
-                        // Client gửi đường dẫn trong Payload (dạng string thuần hoặc JSON string)
                         string path = JsonSerializer.Deserialize<string>(requestPacket.Payload) ?? string.Empty;
                         var content = _fileService.GetDirectoryContent(path);
                         response.SetPayload(content);
@@ -60,7 +61,6 @@ namespace RemoteFileManager.Server.Handlers
                         break;
 
                     case CommandCode.KillProcess:
-                        // Client gửi ID process cần kill
                         int pid = JsonSerializer.Deserialize<int>(requestPacket.Payload);
                         _systemService.KillProcess(pid);
                         response.Message = $"Process {pid} killed successfully.";
@@ -69,7 +69,7 @@ namespace RemoteFileManager.Server.Handlers
                     case CommandCode.DeleteItem:
                         string pathToDelete = JsonSerializer.Deserialize<string>(requestPacket.Payload);
                         _fileService.DeleteItem(pathToDelete);
-                        response.Message = "Deleted successfully."; 
+                        response.Message = "Deleted successfully.";
                         break;
 
                     case CommandCode.CreateFolder:
@@ -79,128 +79,28 @@ namespace RemoteFileManager.Server.Handlers
                         break;
 
                     case CommandCode.RequestDownload:
-                        string filePath = JsonSerializer.Deserialize<string>(requestPacket.Payload);
-
-                        using (var fileStream = _transferService.GetFileStream(filePath))
-                        {
-                            long totalSize = fileStream.Length;
-                            string fileName = Path.GetFileName(filePath);
-
-                            // 1. Gửi gói tin báo bắt đầu (Header)
-                            var headerPacket = new Packet
-                            {
-                                Command = CommandCode.DownloadResponse,
-                                Message = "Starting download..."
-                            };
-                            // Payload chứa FileChunkDto rỗng nhưng có TotalSize để Client biết
-                            headerPacket.SetPayload(new FileChunkDto { TotalSize = totalSize, FileName = fileName });
-
-                            // Gửi gói Header đi trước
-                            await sendCallback(headerPacket);
-
-                            // 2. Cắt file và gửi từng chunk
-                            byte[] buffer = new byte[64 * 1024]; // 64KB mỗi gói
-                            int bytesRead;
-                            long currentOffset = 0;
-
-                            while ((bytesRead = await fileStream.ReadAsync(buffer, 0, buffer.Length)) > 0)
-                            {
-                                // Copy đúng số byte vừa đọc (tránh gói cuối bị dư số 0)
-                                byte[] dataToSend = new byte[bytesRead];
-                                Array.Copy(buffer, dataToSend, bytesRead);
-
-                                var chunkDto = new FileChunkDto
-                                {
-                                    FileName = fileName,
-                                    TotalSize = totalSize,
-                                    CurrentOffset = currentOffset,
-                                    Data = dataToSend,
-                                    IsLastChunk = (currentOffset + bytesRead >= totalSize)
-                                };
-
-                                var chunkPacket = new Packet
-                                {
-                                    Command = CommandCode.FileChunk
-                                };
-                                chunkPacket.SetPayload(chunkDto);
-
-                                // Gửi gói chunk đi
-                                await sendCallback(chunkPacket);
-
-                                currentOffset += bytesRead;
-
-                                // Delay cực nhỏ để không làm ngộp mạng (tùy chọn)
-                                await Task.Delay(1);
-                            }
-                        }
-
-                        // Vì đã gửi hết qua callback, ta trả về null để ClientSession không gửi thêm gì nữa
-                        return null;
+                        return await HandleDownloadRequestAsync(requestPacket, sendCallback);
 
                     case CommandCode.RequestUpload:
-                        // 1. Client gửi thông tin file muốn upload
-                        var uploadInfo = JsonSerializer.Deserialize<FileChunkDto>(requestPacket.Payload);
-                        if (uploadInfo == null) throw new Exception("Invalid payload");
+                        return await HandleUploadRequestAsync(requestPacket, session, response);
 
-                        // uploadInfo.FileName chứa đường dẫn đầy đủ đích đến (Do Client gửi lên)
-                        string savePath = uploadInfo.FileName;
-
-                        try
-                        {
-                            // Đảm bảo thư mục cha tồn tại
-                            string? dir = Path.GetDirectoryName(savePath);
-                            if (!string.IsNullOrEmpty(dir) && !Directory.Exists(dir))
-                            {
-                                Directory.CreateDirectory(dir);
-                            }
-
-                            // 2. Mở FileStream chế độ Create và LƯU VÀO SESSION
-                            // Lưu vào session để các gói tin FileChunk sau đó có thể lấy ra dùng tiếp
-                            session.CurrentUploadStream = new FileStream(savePath, FileMode.Create, FileAccess.Write);
-
-                            // 3. Báo cho Client biết Server đã sẵn sàng hứng
-                            response.Command = CommandCode.UploadReady;
-                            response.Message = "Server Ready to receive data";
-                        }
-                        catch (Exception ex)
-                        {
-                            response.Command = CommandCode.SystemAlert;
-                            response.Message = "Upload Init Failed: " + ex.Message;
-                        }
-                        break;
                     case CommandCode.FileChunk:
-                        // 1. Kiểm tra xem Session có đang giữ Stream nào không
-                        if (session.CurrentUploadStream != null)
-                        {
-                            var chunk = JsonSerializer.Deserialize<FileChunkDto>(requestPacket.Payload);
-                            if (chunk != null)
-                            {
-                                // 2. Ghi dữ liệu vào file
-                                await session.CurrentUploadStream.WriteAsync(chunk.Data, 0, chunk.Data.Length);
+                        return await HandleFileChunkAsync(requestPacket, session, response);
 
-                                // 3. Nếu là gói cuối cùng
-                                if (chunk.IsLastChunk)
-                                {
-                                    // Đóng file, lưu xuống đĩa cứng
-                                    session.CurrentUploadStream.Close();
-                                    session.CurrentUploadStream.Dispose();
-                                    session.CurrentUploadStream = null; // Xóa khỏi session
-
-                                    Console.WriteLine($"Upload finished: {chunk.FileName}");
-                                }
-                            }
-
-                            // QUAN TRỌNG: Trả về null để KHÔNG gửi phản hồi cho Client
-                            // Vì gửi phản hồi mỗi gói sẽ làm chậm tốc độ upload
-                            return null;
-                        }
-                        else
-                        {
-                            // Nếu Client gửi Data mà Server không có Stream (lỗi logic hoặc timeout)
-                            response.Command = CommandCode.SystemAlert;
-                            response.Message = "Upload session not found or expired.";
-                        }
+                    case CommandCode.SendClipboard:
+                        HandleSendClipboard(requestPacket, response);
                         break;
+
+                    case CommandCode.GetClipboard:
+                        HandleGetClipboard(response);
+                        break;
+
+                    case CommandCode.GetFileContent:
+                        return await HandleGetFileContentAsync(requestPacket, response);
+
+                    case CommandCode.SaveFileContent:
+                        return await HandleSaveFileContentAsync(requestPacket, response);
+
                     default:
                         response.Message = "Command not implemented yet.";
                         break;
@@ -208,16 +108,231 @@ namespace RemoteFileManager.Server.Handlers
             }
             catch (Exception ex)
             {
-                // Nếu có lỗi (ví dụ: truy cập thư mục bị cấm, kill process không được)
-                // Server không được crash, mà phải báo lỗi về Client
-                response.Command = CommandCode.SystemAlert; // Hoặc giữ nguyên command cũ nhưng thêm thông báo lỗi
+                response.Command = CommandCode.SystemAlert;
                 response.Message = $"ERROR: {ex.Message}";
             }
 
             return response;
+        }
 
+        // ==================== PRIVATE HELPER METHODS ====================
 
+        private async Task<Packet?> HandleDownloadRequestAsync(Packet requestPacket, Func<Packet, Task> sendCallback)
+        {
+            string filePath = JsonSerializer.Deserialize<string>(requestPacket.Payload);
 
+            using (var fileStream = _transferService.GetFileStream(filePath))
+            {
+                long totalSize = fileStream.Length;
+                string fileName = Path.GetFileName(filePath);
+
+                // 1. Gửi gói tin báo bắt đầu (Header)
+                var headerPacket = new Packet
+                {
+                    Command = CommandCode.DownloadResponse,
+                    Message = "Starting download..."
+                };
+                headerPacket.SetPayload(new FileChunkDto { TotalSize = totalSize, FileName = fileName });
+                await sendCallback(headerPacket);
+
+                // 2. Cắt file và gửi từng chunk
+                byte[] buffer = new byte[64 * 1024]; // 64KB
+                int bytesRead;
+                long currentOffset = 0;
+
+                while ((bytesRead = await fileStream.ReadAsync(buffer, 0, buffer.Length)) > 0)
+                {
+                    byte[] dataToSend = new byte[bytesRead];
+                    Array.Copy(buffer, dataToSend, bytesRead);
+
+                    var chunkDto = new FileChunkDto
+                    {
+                        FileName = fileName,
+                        TotalSize = totalSize,
+                        CurrentOffset = currentOffset,
+                        Data = dataToSend,
+                        IsLastChunk = (currentOffset + bytesRead >= totalSize)
+                    };
+
+                    var chunkPacket = new Packet { Command = CommandCode.FileChunk };
+                    chunkPacket.SetPayload(chunkDto);
+                    await sendCallback(chunkPacket);
+
+                    currentOffset += bytesRead;
+                    await Task.Delay(1);
+                }
+            }
+
+            return null; // Không gửi thêm response
+        }
+
+        private async Task<Packet?> HandleUploadRequestAsync(Packet requestPacket, ClientSession session, Packet response)
+        {
+            var uploadInfo = JsonSerializer.Deserialize<FileChunkDto>(requestPacket.Payload);
+            if (uploadInfo == null) throw new Exception("Invalid payload");
+
+            string savePath = uploadInfo.FileName;
+
+            try
+            {
+                string? dir = Path.GetDirectoryName(savePath);
+                if (!string.IsNullOrEmpty(dir) && !Directory.Exists(dir))
+                {
+                    Directory.CreateDirectory(dir);
+                }
+
+                session.CurrentUploadStream = new FileStream(savePath, FileMode.Create, FileAccess.Write);
+
+                response.Command = CommandCode.UploadReady;
+                response.Message = "Server Ready to receive data";
+            }
+            catch (Exception ex)
+            {
+                response.Command = CommandCode.SystemAlert;
+                response.Message = "Upload Init Failed: " + ex.Message;
+            }
+
+            return response;
+        }
+
+        private async Task<Packet?> HandleFileChunkAsync(Packet requestPacket, ClientSession session, Packet response)
+        {
+            if (session.CurrentUploadStream != null)
+            {
+                var chunk = JsonSerializer.Deserialize<FileChunkDto>(requestPacket.Payload);
+                if (chunk != null)
+                {
+                    await session.CurrentUploadStream.WriteAsync(chunk.Data, 0, chunk.Data.Length);
+
+                    if (chunk.IsLastChunk)
+                    {
+                        session.CurrentUploadStream.Close();
+                        session.CurrentUploadStream.Dispose();
+                        session.CurrentUploadStream = null;
+                        Console.WriteLine($"Upload finished: {chunk.FileName}");
+                    }
+                }
+
+                return null; // Không gửi response để tối ưu tốc độ
+            }
+            else
+            {
+                response.Command = CommandCode.SystemAlert;
+                response.Message = "Upload session not found or expired.";
+                return response;
+            }
+        }
+
+        private void HandleSendClipboard(Packet requestPacket, Packet response)
+        {
+            string textContent = JsonSerializer.Deserialize<string>(requestPacket.Payload);
+
+            Thread staThread = new Thread(() =>
+            {
+                try
+                {
+                    System.Windows.Clipboard.SetText(textContent);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Clipboard error: " + ex.Message);
+                }
+            });
+            staThread.SetApartmentState(ApartmentState.STA);
+            staThread.Start();
+            staThread.Join();
+
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine("========================================");
+            Console.WriteLine($"[CLIPBOARD RECEIVED from Client]");
+            Console.WriteLine($"Content: \"{textContent}\"");
+            Console.WriteLine("========================================");
+            Console.ResetColor();
+
+            response.Message = "Server received clipboard data.";
+        }
+
+        private void HandleGetClipboard(Packet response)
+        {
+            string serverClipboardText = "";
+            Thread readThread = new Thread(() =>
+            {
+                try
+                {
+                    if (System.Windows.Clipboard.ContainsText())
+                        serverClipboardText = System.Windows.Clipboard.GetText();
+                }
+                catch { }
+            });
+            readThread.SetApartmentState(ApartmentState.STA);
+            readThread.Start();
+            readThread.Join();
+
+            response.SetPayload(serverClipboardText);
+        }
+
+        private async Task<Packet> HandleGetFileContentAsync(Packet requestPacket, Packet response)
+        {
+            string pathRead = JsonSerializer.Deserialize<string>(requestPacket.Payload);
+            var fileInfo = new FileInfo(pathRead);
+
+            if (!fileInfo.Exists)
+            {
+                response.Command = CommandCode.SystemAlert;
+                response.Message = "File không tồn tại!";
+            }
+            else if (fileInfo.Length > 1024 * 1024)
+            {
+                response.Command = CommandCode.SystemAlert;
+                response.Message = "File quá lớn (>1MB). Vui lòng dùng chức năng Download.";
+            }
+            else
+            {
+                try
+                {
+                    string content = await File.ReadAllTextAsync(pathRead);
+
+                    var dto = new FileContentDto
+                    {
+                        FullPath = pathRead,
+                        Content = content
+                    };
+
+                    response.Command = CommandCode.GetFileContent;
+                    response.SetPayload(dto);
+                    response.Message = "OK";
+                }
+                catch (Exception ex)
+                {
+                    response.Command = CommandCode.SystemAlert;
+                    response.Message = "Lỗi đọc file: " + ex.Message;
+                }
+            }
+
+            return response;
+        }
+
+        private async Task<Packet> HandleSaveFileContentAsync(Packet requestPacket, Packet response)
+        {
+            var saveDto = JsonSerializer.Deserialize<FileContentDto>(requestPacket.Payload);
+            try
+            {
+                await File.WriteAllTextAsync(saveDto.FullPath, saveDto.Content);
+
+                // SỬA DÒNG NÀY:
+                // Cũ: response.Command = CommandCode.SystemAlert; 
+                // Mới: Trả về chính lệnh SaveFileContent để báo thành công
+                response.Command = CommandCode.SaveFileContent;
+                response.Message = "Đã lưu file thành công trên Server!";
+            }
+            catch (Exception ex)
+            {
+                // Chỉ khi lỗi thật sự mới dùng SystemAlert
+                response.Command = CommandCode.SystemAlert;
+                response.Message = "Lỗi khi lưu file: " + ex.Message;
+            }
+
+            return response;
         }
     }
 }

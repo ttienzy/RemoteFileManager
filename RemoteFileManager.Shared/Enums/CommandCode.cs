@@ -37,5 +37,11 @@
             // --- UPLOAD COMMANDS ---
         RequestUpload,      // Client xin gửi file (kèm tên file + kích thước)
         UploadReady,        // Server bảo: "OK, bắn qua đi"
+
+        SendClipboard, // Gửi text để set vào clipboard máy kia
+        GetClipboard,   // Yêu cầu lấy text từ clipboard máy kia
+
+        GetFileContent,     // Yêu cầu đọc file
+        SaveFileContent,    // Yêu cầu lưu file
     }
 }

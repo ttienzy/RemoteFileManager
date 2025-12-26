@@ -14,6 +14,8 @@ Console.WriteLine("==============================================");
 Console.WriteLine();
 // 2. Khởi tạo Server
 var server = new RemoteServer();
+var discovery = new DiscoveryService(); // Mới
+var cts = new CancellationTokenSource();
 
 // 3. Xử lý sự kiện Ctrl+C (Graceful Shutdown)
 // Khi người dùng bấm Ctrl+C hoặc tắt cửa sổ, đoạn code này sẽ chạy
@@ -28,7 +30,10 @@ Console.CancelKeyPress += async (sender, e) =>
 // 4. Chạy Server
 try
 {
-    await server.StartAsync();
+    var serverTask = server.StartAsync();
+    var discoveryTask = discovery.StartListeningAsync(cts.Token); // Mới
+
+    await Task.WhenAll(serverTask, discoveryTask);
 }
 catch (Exception ex)
 {

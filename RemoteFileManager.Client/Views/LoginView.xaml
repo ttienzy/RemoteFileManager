@@ -3,46 +3,68 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              Height="450" Width="800">
-    <Grid Background="#F0F2F5">
-        <materialDesign:Card Width="350" Padding="30" UniformCornerRadius="10" VerticalAlignment="Center">
-            <StackPanel>
-                <TextBlock Text="REMOTE CONNECT" 
-                           HorizontalAlignment="Center" 
-                           FontSize="24" FontWeight="Bold" 
-                           Foreground="{DynamicResource PrimaryHueMidBrush}"/>
 
-                <TextBlock Text="Đồ án Lập trình mạng" 
-                           HorizontalAlignment="Center" 
-                           Margin="0,5,0,30" Opacity="0.6"/>
+    <!-- QUAN TRỌNG: Phải có DialogHost bọc ngoài cùng -->
+    <!-- Identifier="LoginDialog" phải khớp với chuỗi trong ViewModel -->
+    <materialDesign:DialogHost Identifier="LoginDialog" DialogTheme="Inherit">
 
-                <!-- IP Address -->
-                <TextBox materialDesign:HintAssist.Hint="Server IP Address"
-                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                         Text="{Binding IpAddress}"
-                         Margin="0,0,0,20" FontSize="16"/>
+        <Grid Background="#F0F2F5">
+            <materialDesign:Card Width="350" Padding="30" UniformCornerRadius="10" VerticalAlignment="Center">
+                <StackPanel>
+                    <TextBlock Text="REMOTE CONNECT" 
+                               HorizontalAlignment="Center" 
+                               FontSize="24" FontWeight="Bold" 
+                               Foreground="{DynamicResource MaterialDesign.Brush.Primary}"/>
 
-                <!-- Port -->
-                <TextBox materialDesign:HintAssist.Hint="Port"
-                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                         Text="{Binding Port}"
-                         Margin="0,0,0,30" FontSize="16"/>
+                    <TextBlock Text="Đồ án Lập trình mạng" 
+                               HorizontalAlignment="Center" 
+                               Margin="0,5,0,30" Opacity="0.6"/>
 
-                <!-- Error Message -->
-                <TextBlock Text="{Binding ErrorMessage}" 
-                           Foreground="Red" TextWrapping="Wrap" 
-                           HorizontalAlignment="Center" Margin="0,0,0,10"/>
+                    <!-- Khu vực nhập IP và nút Scan -->
+                    <Grid Margin="0,0,0,20">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
 
-                <!-- Connect Button -->
-                <Button Content="CONNECT SERVER" 
-                        Command="{Binding ConnectCommand}"
-                        Height="50" FontSize="16"/>
+                        <!-- IP Address -->
+                        <TextBox materialDesign:HintAssist.Hint="Server IP Address"
+                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                 Text="{Binding IpAddress}" 
+                                 FontSize="16"/>
 
-                <!-- Loading Spinner -->
-                <ProgressBar Style="{StaticResource MaterialDesignCircularProgressBar}"
-                             IsIndeterminate="True"
-                             Visibility="{Binding IsConnecting, Converter={StaticResource BooleanToVisibilityConverter}}"
-                             Margin="0,20,0,0"/>
-            </StackPanel>
-        </materialDesign:Card>
-    </Grid>
+                        <!-- Nút Scan (MỚI) -->
+                        <Button Grid.Column="1" Command="{Binding ScanServerCommand}"
+                                Style="{StaticResource MaterialDesignIconButton}"
+                                ToolTip="Scan LAN" Margin="10,0,0,0">
+                            <materialDesign:PackIcon Kind="Radar" />
+                        </Button>
+                    </Grid>
+
+                    <!-- Port -->
+                    <TextBox materialDesign:HintAssist.Hint="Port"
+                             Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                             Text="{Binding Port}"
+                             Margin="0,0,0,30" FontSize="16"/>
+
+                    <!-- Error Message -->
+                    <TextBlock Text="{Binding ErrorMessage}" 
+                               Foreground="Red" TextWrapping="Wrap" 
+                               HorizontalAlignment="Center" Margin="0,0,0,10"/>
+
+                    <!-- Connect Button -->
+                    <Button Content="CONNECT SERVER" 
+                            Command="{Binding ConnectCommand}"
+                            Height="50" FontSize="16"/>
+
+                    <!-- Loading Spinner -->
+                    <ProgressBar Style="{StaticResource MaterialDesignCircularProgressBar}"
+                                 IsIndeterminate="True"
+                                 Visibility="{Binding IsConnecting, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                 Margin="0,20,0,0"/>
+                </StackPanel>
+            </materialDesign:Card>
+        </Grid>
+
+    </materialDesign:DialogHost>
 </UserControl>
