@@ -19,7 +19,8 @@ namespace RemoteFileManager.Client.ViewModels
 {
     public class FileExplorerViewModel : ViewModelBase
     {
-        private readonly INetworkService _networkService;
+        private INetworkService? _networkService;
+        private ServerSession _currentSession;
         private string _currentPath = string.Empty;
         private bool _isLoading;
 
@@ -33,9 +34,9 @@ namespace RemoteFileManager.Client.ViewModels
         private bool _pendingUploadDeleteTemp;
 
         private readonly HashSet<string> _editableExtensions = new()
-{
-    ".txt", ".log", ".json", ".xml", ".config", ".cs", ".html", ".css", ".js", ".md", ".ini", ".bat", ".sh"
-};
+        {
+            ".txt", ".log", ".json", ".xml", ".config", ".cs", ".html", ".css", ".js", ".md", ".ini", ".bat", ".sh"
+        };
         public SnackbarMessageQueue MessageQueue { get; } = new SnackbarMessageQueue(TimeSpan.FromSeconds(3));
         // Thêm Property
         public bool IsDownloading
@@ -52,6 +53,18 @@ namespace RemoteFileManager.Client.ViewModels
         // Danh sách chứa cả Ổ đĩa (DriveDto) và File (FileDto)
         // Chúng ta dùng object để chứa được cả 2 loại
         public ObservableCollection<object> Items { get; } = new();
+        public FileExplorerViewModel()
+        {
+            // Khởi tạo tất cả Command tại đây
+            OpenItemCommand = new RelayCommand(ExecuteOpenItem);
+            GoBackCommand = new RelayCommand(ExecuteGoBack, _ => !string.IsNullOrEmpty(CurrentPath));
+            RefreshCommand = new RelayCommand(_ => LoadData());
+            DeleteItemCommand = new RelayCommand(ExecuteDeleteItem);
+            CreateFolderCommand = new RelayCommand(ExecuteCreateFolder);
+            DownloadItemCommand = new RelayCommand(ExecuteDownloadItem);
+            UploadFileCommand = new RelayCommand(ExecuteUploadFile);
+            EditFileCommand = new RelayCommand(ExecuteEditFile);
+        }
 
         public FileExplorerViewModel(INetworkService networkService)
         {
@@ -76,7 +89,55 @@ namespace RemoteFileManager.Client.ViewModels
             // Tự động tải danh sách ổ đĩa khi vừa vào màn hình này
             LoadData();
         }
+        public void SetTargetServer(ServerSession session)
+        {
+            // A. Hủy đăng ký sự kiện ở máy cũ (nếu có)
+            if (_networkService != null)
+            {
+                _networkService.PacketReceived -= OnPacketReceived;
+            }
 
+            // B. Gán NetworkService của máy mới
+            _networkService = session.NetworkService;
+
+            // C. Đăng ký sự kiện lại
+            _networkService.PacketReceived += OnPacketReceived;
+
+            // D. Reset giao diện
+            CurrentPath = string.Empty;
+            Items.Clear();
+
+            // E. Load dữ liệu ổ đĩa máy mới
+            LoadData();
+        }
+
+        private void LoadData()
+        {
+            // Kiểm tra null để tránh lỗi khi chưa chọn máy nào
+            if (_networkService == null || !_networkService.IsConnected) return;
+
+            IsLoading = true;
+            Items.Clear();
+
+            if (string.IsNullOrEmpty(CurrentPath))
+            {
+                SendRequest(CommandCode.GetDrives);
+            }
+            else
+            {
+                SendRequest(CommandCode.GetDirectoryContent, CurrentPath);
+            }
+        }
+
+        private async void SendRequest(CommandCode command, object? payload = null)
+        {
+            if (_networkService == null) return;
+
+            var packet = new Packet { Command = command };
+            if (payload != null) packet.SetPayload(payload);
+
+            await _networkService.SendPacketAsync(packet);
+        }
         public string CurrentPath
         {
             get => _currentPath;
@@ -240,30 +301,30 @@ namespace RemoteFileManager.Client.ViewModels
                 }
             }
         }
-        private void LoadData()
-        {
-            IsLoading = true;
-            Items.Clear();
+        //private void LoadData()
+        //{
+        //    IsLoading = true;
+        //    Items.Clear();
 
-            if (string.IsNullOrEmpty(CurrentPath))
-            {
-                // Nếu đường dẫn rỗng -> Lấy danh sách ổ đĩa
-                SendRequest(CommandCode.GetDrives);
-            }
-            else
-            {
-                // Nếu có đường dẫn -> Lấy danh sách file trong đó
-                SendRequest(CommandCode.GetDirectoryContent, CurrentPath);
-            }
-        }
+        //    if (string.IsNullOrEmpty(CurrentPath))
+        //    {
+        //        // Nếu đường dẫn rỗng -> Lấy danh sách ổ đĩa
+        //        SendRequest(CommandCode.GetDrives);
+        //    }
+        //    else
+        //    {
+        //        // Nếu có đường dẫn -> Lấy danh sách file trong đó
+        //        SendRequest(CommandCode.GetDirectoryContent, CurrentPath);
+        //    }
+        //}
 
-        private async void SendRequest(CommandCode command, object? payload = null)
-        {
-            var packet = new Packet { Command = command };
-            if (payload != null) packet.SetPayload(payload);
+        //private async void SendRequest(CommandCode command, object? payload = null)
+        //{
+        //    var packet = new Packet { Command = command };
+        //    if (payload != null) packet.SetPayload(payload);
 
-            await _networkService.SendPacketAsync(packet);
-        }
+        //    await _networkService.SendPacketAsync(packet);
+        //}
 
         // Xử lý khi User Double Click vào 1 item
         private void ExecuteOpenItem(object? item)

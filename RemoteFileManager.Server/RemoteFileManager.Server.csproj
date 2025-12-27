@@ -7,7 +7,19 @@
     <Nullable>enable</Nullable>
 
 	  <UseWPF>true</UseWPF>
+
+	  <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="K4os.Compression.LZ4" Version="1.3.8" />
+    <PackageReference Include="System.Drawing.Common" Version="10.0.1" />
+    <PackageReference Include="Vortice.Direct3D11" Version="3.8.1" />
+    <PackageReference Include="Vortice.DirectX" Version="3.8.1" />
+    <PackageReference Include="Vortice.DXGI" Version="3.8.1" />
+    <PackageReference Include="Vortice.Mathematics" Version="2.0.0" />
+    <PackageReference Include="Vortice.Win32" Version="2.3.0" />
+  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\RemoteFileManager.Shared\RemoteFileManager.Shared.csproj" />

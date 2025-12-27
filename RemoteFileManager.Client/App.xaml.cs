@@ -1,7 +1,7 @@
-﻿using System.Windows;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using RemoteFileManager.Client.Services;
 using RemoteFileManager.Client.ViewModels;
+using System.Windows;
 
 namespace RemoteFileManager.Client
 {
@@ -13,15 +13,27 @@ namespace RemoteFileManager.Client
         {
             var services = new ServiceCollection();
 
-            // 1. Đăng ký Service (Singleton: Chỉ tạo 1 lần duy nhất)
-            services.AddSingleton<INetworkService, NetworkService>();
+            // --- SERVICES ---
+            // 1. SessionManager: Singleton (Quản lý danh sách các máy kết nối)
+            services.AddSingleton<SessionManager>();
 
-            // 2. Đăng ký ViewModel
-            services.AddSingleton<MainViewModel>();       // Main giữ trạng thái chuyển trang nên cần Singleton
-            services.AddTransient<LoginViewModel>();      // Login mỗi lần hiện là mới
+            // 2. NetworkService: Transient (Mỗi máy con tạo 1 cái riêng)
+            services.AddTransient<INetworkService, NetworkService>();
+
+            // --- VIEWMODELS ---
+            // 3. MainViewModel: Chứa Dashboard
+            services.AddSingleton<MainViewModel>();
+
+            // 4. DashboardViewModel: Quản lý logic chính
+            services.AddSingleton<DashboardViewModel>();
+
+            // 5. FileExplorerViewModel: Transient (Vì nó nằm trong Dashboard)
             services.AddTransient<FileExplorerViewModel>();
 
-            // 3. Đăng ký MainWindow
+            // 6. LoginViewModel: Transient (Dùng làm Dialog để thêm máy)
+            services.AddTransient<LoginViewModel>();
+
+            // --- WINDOW ---
             services.AddSingleton<MainWindow>();
 
             _serviceProvider = services.BuildServiceProvider();
@@ -29,8 +41,9 @@ namespace RemoteFileManager.Client
 
         protected override void OnStartup(StartupEventArgs e)
         {
-            // Lấy MainWindow từ DI container và hiển thị
             var mainWindow = _serviceProvider.GetRequiredService<MainWindow>();
+            // Gán DataContext tự động
+            mainWindow.DataContext = _serviceProvider.GetRequiredService<MainViewModel>();
             mainWindow.Show();
             base.OnStartup(e);
         }

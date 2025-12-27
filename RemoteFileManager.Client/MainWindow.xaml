@@ -3,26 +3,30 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        
         xmlns:vm="clr-namespace:RemoteFileManager.Client.ViewModels"
         xmlns:v="clr-namespace:RemoteFileManager.Client.Views"
+        
         mc:Ignorable="d"
-        Title="Remote File Manager Client" Height="600" Width="1000"
+        Title="Remote File Manager - Multi Server" Height="700" Width="1200"
         WindowStartupLocation="CenterScreen">
-    <!-- ĐÃ XÓA DÒNG DataContext=... vì ta set nó trong C# rồi -->
 
     <Window.Resources>
-        <!-- Mapping: ViewModel nào thì hiển thị View đó -->
-        <!-- RẤT QUAN TRỌNG: Kiểm tra kỹ namespace vm và v -->
-
-        <DataTemplate DataType="{x:Type vm:LoginViewModel}">
-            <v:LoginView/>
+        <!-- 1. Template cho Dashboard (Giao diện chính mới) -->
+        <DataTemplate DataType="{x:Type vm:DashboardViewModel}">
+            <v:DashboardView/>
         </DataTemplate>
 
+        <!-- 2. Template cho FileExplorer (Để hiển thị bên trong Dashboard) -->
         <DataTemplate DataType="{x:Type vm:FileExplorerViewModel}">
             <v:FileExplorerView/>
         </DataTemplate>
+
+        <!-- Lưu ý: LoginViewModel không còn dùng ở cấp độ MainWindow nữa 
+             mà sẽ dùng dạng Dialog bên trong Dashboard -->
     </Window.Resources>
 
-    <!-- ContentControl này sẽ thay đổi nội dung dựa trên DataTemplate ở trên -->
+    <!-- ContentControl hiển thị CurrentViewModel (chính là Dashboard) -->
     <ContentControl Content="{Binding CurrentViewModel}" />
 </Window>

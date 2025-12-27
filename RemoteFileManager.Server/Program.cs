@@ -1,4 +1,5 @@
 ﻿using RemoteFileManager.Server.Core;
+using System.Threading.Tasks;
 // 1. Cấu hình Console
 
 Console.Title = "Remote File Manager - SERVER";
@@ -15,6 +16,7 @@ Console.WriteLine();
 // 2. Khởi tạo Server
 var server = new RemoteServer();
 var discovery = new DiscoveryService(); // Mới
+var remoteDesktop = new RemoteDesktopService();
 var cts = new CancellationTokenSource();
 
 // 3. Xử lý sự kiện Ctrl+C (Graceful Shutdown)
@@ -30,10 +32,13 @@ Console.CancelKeyPress += async (sender, e) =>
 // 4. Chạy Server
 try
 {
-    var serverTask = server.StartAsync();
-    var discoveryTask = discovery.StartListeningAsync(cts.Token); // Mới
+    var task1 = server.StartAsync();
+    var task2 = discovery.StartListeningAsync(cts.Token);
+    var task3 = remoteDesktop.StartAsync();
 
-    await Task.WhenAll(serverTask, discoveryTask);
+    Console.WriteLine("All services started. Press Ctrl+C to stop.");
+
+    await Task.WhenAll(task1, task2, task3);
 }
 catch (Exception ex)
 {

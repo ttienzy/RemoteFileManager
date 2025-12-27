@@ -4,7 +4,7 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:model="clr-namespace:RemoteFileManager.Shared.Models.FileSystem;assembly=RemoteFileManager.Shared">
 
-    <materialDesign:DialogHost Identifier="RootDialog" DialogTheme="Inherit">
+
         <Grid Background="White">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
@@ -196,5 +196,4 @@
                 </Grid>
             </materialDesign:Card>
         </Grid>
-    </materialDesign:DialogHost>
 </UserControl>
